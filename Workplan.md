@@ -8,27 +8,27 @@
     Georges Nguyen
     Manuel Lorente Rodriguez
 
-# Objective: Lund vs Uppsala Climate Comparison
+# Objective: Lund vs Umeå Climate Comparison
 
-The goal of this project is to compare the climate of Lund and Uppsala using Swedish Meteorological and Hydrological Institute (SMHI) data and ROOT-based analysis.
+The goal of this project is to compare the climate of Lund and Umeå using Swedish Meteorological and Hydrological Institute (SMHI) data and ROOT-based analysis.
 
 We will investigate four aspects of the climate:
 
 1. **Seasonal variation in mean temperature**
-    - How does the mean temperature vary throughout the year in Lund and Uppsala?
+    - How does the mean temperature vary throughout the year in Lund and Umeå?
     - How do the seasonal temperature patterns differ between the two cities?
 
 2. **Long-term changes in mean annual temperature**
-    - How has the mean annual temperature changed over time in Lund and Uppsala?
+    - How has the mean annual temperature changed over time in Lund and Umeå?
     - Are there observable long-term trends in the two cities?
 
 3. **Comparison of Precipitation**
-    - How does precipitation vary throughout the year in Lund and Uppsala?
+    - How does precipitation vary throughout the year and between the two cities?
     - Which city receives more precipitation during different parts of the year?
 
-4. **Comparison of Daylight Duration**
-    - How does daylight duration vary throughout the year in Lund and Uppsala?
-    - How does the difference in latitude between the cities affect daylight duration?
+4. **Comparison of Observed Sunshine Duration**
+    - How does observed sunshine duration vary throughout the year in Lund and Umeå?
+    - How does the difference in latitude between the cities affect the observed sunshine duration?
 
 # Timeline:
     
@@ -68,7 +68,7 @@ We will investigate four aspects of the climate:
 # Tasks:
 1. **Data Availability and Preparation**
     RESPONSIBLE: 
-    - Identify the datasets available for Lund and Uppsala.
+    - Identify the datasets available for Lund and Umeå.
     - Identify the relevant weather stations and variables.
     - Check the temporal coverage and units of the datasets.
     - Check for missing or invalid measurements.
