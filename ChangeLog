@@ -3,12 +3,6 @@
 // NOTE: copying git log over this file is NOT a ChangeLog! See this: <https://www.gnu.org/prep/standards/html_node/Change-Logs.html>
 // Changelog is a summary of a lot of related commits.
 
-2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
-	Extracted raw data and removed unnecessary files
-
-	* Added raw_data in datasets/ with extracted data from datasets.tgz
-	* Removed data files not from Umeå and Lund weather stations
-
 # Template: 
 
 YYYY-MM-DD Name LastName  <email@somewhere>
@@ -34,3 +28,14 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Checking directory structure
 	* Added Workplan.md
 
+2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+	Extracted raw data and removed unnecessary files
+
+	* Added raw_data in datasets/ with extracted data from datasets.tgz
+	* Removed data files not from Umeå and Lund weather stations
+
+2026-10-21 Manuel Lorente Rodriguez
+	Data derived script for shunshie and dependencies
+
+	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived. 
+	* Added dependency to read CSV files in CPP. 
