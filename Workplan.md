@@ -14,19 +14,19 @@ The goal of this project is to compare the climate of Lund and Umeå using Swedi
 
 We will investigate four aspects of the climate:
 
-1. **Seasonal variation in mean temperature**
+1. **Seasonal variation in mean temperature** (Elena)
     - How does the mean temperature vary throughout the year in Lund and Umeå?
     - How do the seasonal temperature patterns differ between the two cities?
 
-2. **Long-term changes in mean annual temperature**
+2. **Long-term changes in mean annual temperature** (Georges)
     - How has the mean annual temperature changed over time in Lund and Umeå?
     - Are there observable long-term trends in the two cities?
 
-3. **Comparison of Precipitation**
+3. **Comparison of Precipitation** (Gabriel)
     - How does precipitation vary throughout the year and between the two cities?
     - Which city receives more precipitation during different parts of the year?
 
-4. **Comparison of Observed Sunshine Duration**
+4. **Comparison of Observed Sunshine Duration** (Manuel)
     - How does observed sunshine duration vary throughout the year in Lund and Umeå?
     - How does the difference in latitude between the cities affect the observed sunshine duration?
 
@@ -79,16 +79,16 @@ We will investigate four aspects of the climate:
     RESPONSIBLE: 
 
 3. **Analysis 1:** Seasonal Variation in Mean Temperature
-    RESPONSIBLE: 
+    RESPONSIBLE: Elena
 
 4. **Analysis 2:** Long-Term Changes in Mean Annual Temperature
-    RESPONSIBLE: 
+    RESPONSIBLE: Georges
 
 5. **Analysis 3:** Comparison of Precipitation
-    RESPONSIBLE: 
+    RESPONSIBLE: Gabriel
 
 6. **Analysis 4:** Comparison of Daylight Duration
-    RESPONSIBLE: 
+    RESPONSIBLE: Manuel
 
 7. **Integration, Final Analysis and ROOT Figures**
     RESPONSIBLE: 
