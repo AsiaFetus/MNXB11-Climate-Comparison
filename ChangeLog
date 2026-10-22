@@ -34,8 +34,17 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Added raw_data in datasets/ with extracted data from datasets.tgz
 	* Removed data files not from Umeå and Lund weather stations
 
-2026-10-21 Manuel Lorente Rodriguez
+2026-10-21 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
 	Data derived script for shunshie and dependencies
 
 	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived. 
 	* Added dependency to read CSV files in CPP. 
+
+2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Data import in to CPP code.
+
+	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
+	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
+	* Updated sunshine_derived.sh to make data separation with `,`.
+	* Reorganized data processing scripts into scripts/data/ 
+	* Updated READMEs for datasets folder and main project. 

@@ -45,3 +45,11 @@ argumentum*
 
 # Don't add the main executable to git
 main
+
+# Vim temporary and swap files
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak

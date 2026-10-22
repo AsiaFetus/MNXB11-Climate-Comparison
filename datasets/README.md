@@ -1,36 +1,127 @@
-This folder contains a tarball `datasets.tgz` with SHMI open data datasets.
+# Climate Datasets
 
-To extract the files, run
+## About
 
-```console
-tar zxvf datasets.tgz
+This directory contains meteorological data from the Swedish Meteorological and Hydrological Institute (SMHI), used to compare climate conditions in Lund and Umeå. We use measurements of temperature, precipitation, and sunshine duration.
+
+The data is divided into original measurements (`raw_data/`) and cleaned datasets (`derived_data/`).
+
+## Directory structure
+
+```text
+datasets/
+├── datasets.tgz
+├── raw_data/
+│   ├── precipitation_lund_53430.csv
+│   ├── precipitation_umea_robacksdalen_140490.csv
+│   ├── sunshine_lund_53445.csv
+│   ├── sunshine_umea_140615.csv
+│   └── ... temperature datasets
+│
+├── derived_data/
+│   ├── sunshine/
+│   │   ├── lund_sunshine_derived.csv
+│   │   └── umea_sunshine_derived.csv
+│   └── precipitation/
+│       ├── precipitation_lund_derived.csv
+│       └── precipitation_umea_derived.csv
+│
+└── README.md
 ```
 
-The meteorological data used in this project has been downloaded from 
-the official "SMHI - Sveriges meteorologiska och hydrologiska institut"
-website, <https://www.smhi.se>
+## Raw data
 
-The files were downloaded at the page:
-<https://www.smhi.se/data/temperatur-och-vind/temperatur/airtemperatureInstant#h-Langatemperaturserier>
+The original SMHI files contain meteorological observations together with metadata, measurement units, station information, and quality indicators.
 
-They represent the _air temperature_ collected by a given station, excluding 
-the last three months at the time these datasets where downloaded.
+The raw files are preserved separately from the processed data.
 
-The filenames are the same as the original from SMHI but the 
-filename has been suffixed with `_Cityname-place` to match 
-the city name and location where the data was taken - if any specified. 
-Mind that in some cities there are more than one station, 
-the filename alone does not necessarily clarify which station.
+The course-provided temperature datasets are also available in the `datasets.tgz` archive.
 
-As a bonus we included some of the oldest historical data for Uppsala that 
-has a different format and it has been corrected to give a more accurate 
-picture of the area's climate change. 
-It was the inspiration for the first course project in 2013.
-It has been downloaded from <https://www.smhi.se/data/meteorologi/temperatur/uppsalas-temperaturserie-1.2855> which contains an interesting historical reading.
+To extract the archive, if needed:
 
-The content of the files has been left untouched.
+```bash
+tar -xzvf datasets/datasets.tgz -C datasets/
+```
 
-The use of this data is covered by the statements at this link:
-<https://www.smhi.se/data/om-smhis-data/villkor-for-anvandning>
+## Derived data
 
-If you wish you can download additional data from SMHI provided that you follow their Terms Of Use.
+The derived datasets are prepared for easier import into C++.
+
+Processing may include:
+
+- Removing metadata and unnecessary header lines.
+- Selecting the relevant measurement columns.
+- Converting column separators into a consistent format.
+- Removing unnecessary columns.
+
+### Sunshine duration
+
+Location: `derived_data/sunshine/`
+
+The cleaned sunshine datasets contain four fields, without headers:
+
+```text
+Date,Time,Irradiance,Quality
+```
+
+The cleaned solar irradiance datasets contain four columns, without headers:
+
+```text
+Date,Time,Irradiance,Quality
+```
+
+- **Date:** Date of the measurement (YYYY-MM-DD).
+- **Time:** Time of the measurement in UTC (HH:MM:SS).
+- **Irradiance:** Mean incoming solar power per unit area, measured in W/m², averaged over one hour.
+- **Quality:** Indicates the quality of the measurement:
+  - `G`: Good-quality measured data.
+  - `Y`: Estimated or interpolated values where direct measurements were unavailable.
+
+### Precipitation
+
+Location: `derived_data/precipitation/`
+
+The cleaned precipitation datasets contain three fields:
+
+```text
+Date,Precipitation,Quality
+```
+
+### Temperature
+
+## Data processing scripts
+
+The scripts are located in:
+
+```text
+scripts/data/
+```
+
+They create new CSV files from the original SMHI data to import into the C++ program.
+
+Each script should be run with the arguments specified in its usage instructions.
+
+## C++ data import
+
+The processed datasets are imported using the `parseCSV()` function defined in:
+
+```text
+include/parse_csv.h
+src/parse_csv.cxx
+```
+
+The importer handles datasets with three or four columns, depending on the type of measurement.
+
+During import, dates are separated into two numerical values:
+- **Year:** Extracted from the original date (YYYY).
+- **Day of year:** Converted into an integer between 1–365 (or 366 for leap years).
+
+For hourly measurements, the time is also converted into an integer between 0–23.
+
+## Data sources
+
+The datasets originate from [SMHI](https://www.smhi.se/).
+
+Original temperature datasets were provided as part of the MNXB11 project material. Additional sunshine and precipitation measurements were obtained from SMHI open data.
+
+Data usage conditions: [SMHI Terms of Use](https://www.smhi.se/data/om-smhis-data/villkor-for-anvandning).

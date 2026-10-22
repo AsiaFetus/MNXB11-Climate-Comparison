@@ -4,6 +4,12 @@
 #include<csv/csv.h>
 #include<vector>
 #include<string>
-#include "Rectangle.h"
-std::vector<Geometry::Rectangle> parse_rectangles(const std::string& filename);
-#endif // PARSE_CSV_H
+
+std::vector<std::vector<std::string>> parseCSV(const std::string& filename, const int expected_columns);
+
+int yearOfDate(const std::string& date);
+
+int dayOfYear(const std::string& date);
+
+int hourOfDay(const std::string& hour);
+#endif

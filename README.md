@@ -1,86 +1,113 @@
-# MNXB11-project-template
-# About
-This folder contains a skeleton for your project that you can use as
-inspiration. Once you get started, do feel free to go ahead and replace this
-README file with one representing your project.
+# MNXB11 – Lund vs Umeå Climate Comparison
 
-# Directory structure
+## About
 
-The base directory here contains your "main" file, i.e. the C++ file that you
-will be using as your starting point in your project. The code in this file should ideally be short and just make use of the functionality that you've
-prepared in your other translation units. The majority of your code should be placed in  the two folders where you define your translation units, `src/` and `include/`. 
+This project is the final project for the MNXB11 course at Lund University.
 
-Do remember to add your include guards to your header files, otherwise the compiler will
-get multiple definitions if you end up loading two source files that include the
-same header.
+The objective is to compare the climate of Lund and Umeå using historical meteorological data from the Swedish Meteorological and Hydrological Institute (SMHI).
 
-In the template you can find a small translation unit called Example (in [src/Example.cxx](src/Example.cxx) and [include/Example.h](include/Example.h)) that shows some commented reminders of how the syntax for some C++ constructs work. Feel free to use this as a reference to remind yourself of how to do something while working on it but make sure to remove it from your final project version!
+The data is processed using Bash scripts and C++, while ROOT is used for statistical analysis and visualization.
 
-There is a demonstration of a toy project you can use for inspiration at [EinarElen/MNXB11-project-demo](https://github.com/EinarElen/MNXB11-project-demo). You should not copy code from this repository. There are some intentional bugs hiding in there, see if you can spot them. 
+## Project objectives
 
-The main files that can be a starting point are:
-- [rootlogon.C](rootlogon.C)
-  - This file contains code that ROOT will execute automatically whenever you start it, a good place to place general style choices you want to make or anything else you always want to run!
-  - Be careful to not include anything that depends on your particular machine here (e.g. absolute paths)
-- [main.cxx](main.cxx)
-  - This file contains a sample `main` function for your project. You should start with this file if you want to build the project as a C++ binary instead of using the ROOT interpreter.
-- [Makefile](Makefile)
-  - This file gives the `make` utility instructions on how to build different targets. For your convenience there is also a `clean` target that can be used to delete built files to start anew.
-  - You should use this file if you plan to automate the C++ build of your project, but don't use it as a script. It is meant for C++ stuff only - use a BASH script for environment variables and task automation instead.
+We investigate four aspects of the climate:
 
-We have also included three special files in the base of the repository 
-- [.gitignore](.gitignore)
-  - This file contains regular expressions that git tells git that it shouldn't add certain file to your repository. 
-  - Your git repository should generally not contain binary files like object files or executables nor should it contain build artefacts like external libraries. 
-- [.clang-format](.clang-format)
-  - This file holds the configuration for the clang-format tool that you can use to format your code consistently 
-  - It is a good idea to keep your code formatted in a consistent manner, especially when working in groups but doing it manually is a waste of your time. Use a tool for it!
-  ```
-  # Show what the src/Example.cxx file would look like if formatted
-  clang-format src/Example.cxx 
-  # Carry out the formatting in the file directly 
-  clang-format src/Example.cxx -i
-  ```
-  - The `.clang-format` file holds the configuration that clang-format will use to determine how to format your code. By default, it will be formatted according to Google's style but you can pick any that you like from https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+1. **Seasonal temperature variation (Elena):** How does the mean temperature vary throughout the year in Lund and Umeå?
+2. **Long-term temperature trends (Georges):** How has the mean annual temperature changed over time in both cities?
+3. **Precipitation (Gabriel):** How does precipitation vary throughout the year, and which city receives more precipitation?
+4. **Global solar irradiance (Manuel):** How does incoming solar radiation vary throughout the year, and how does the difference in latitude affect the measured irradiance?
 
-The [datasets](datasets) folder contains open data from SMHI and a README.md with further information about it.
+## Project structure
 
-The [scripts](scripts) folder contains BASH scripts examples that can be used to create a build script or a launcher/wrapper for your binaries or for your SLURM submission
-
-The [slurm](slurm) folder contains an example SLURM SBATCH script that calls one of the project launcher scripts above.
-
-
-# Building the project
-
-We have included a basic Makefile here which should be familiar to you. It follows the same project structure that we have been using in the course. When you add a new translation unit to the project, you have update the dependencies in the Makefile. 
-
-By default, the `all` target will be run which 
-- Compiles any `.cxx` files in the `src/` directory into object files 
-- Compiles [`main.cxx`](main.cxx) and links with all the object files in `src/`
-
-You can run the `clean` target (`make clean`) to remove any object files that have been produced as well as the `main` executable.
-
-## Adding external software libraries
-
-If you want to make use of external software libraries with your project, you
-will always have to tell the tool that builds your project. The Makefile included in this template will pick up any header files in the external/include directory and look for libraries in external/lib and external/lib64 so if you use external as your installation directory, you only need to add the corresponding `-l` flag to the linker.
-
-Here's an illustration of the typical process to add a (CMake based) external library
-``` sh
-# Clone or download the library you want to use 
-git clone https://somerepository.com/alibrary alibrary # The last argument determines what the directory will be called
-
-mkdir build/alibrary -pv # -p will tell mkdir to create the build/ directory if it doesn't already exist 
-# Go into the build directory
-cd build/alibrary 
-# Look up the documentation for the library to find out if there are any additional flags you need for CMake 
-
-# This command tells CMake to configure the build directory based on the source code in the ../../alibrary folder and to install the resulting headers and library files into ../../external
-cmake ../../alibrary -DCMAKE_INSTALL_PREFIX=../../external 
-# Build and install! Use -jN to launch N jobs
-make -j8 install # If you are on an 8-core machine
+```text
+MNXB11-Climate-Comparison/
+├── datasets/
+│   ├── raw_data/           # Original SMHI data
+│   ├── derived_data/       # Cleaned CSV files
+│   └── README.md           # Dataset documentation
+├── include/                # C++ header files
+├── src/                    # C++ source files
+├── scripts/
+│   └── data/               # Data preprocessing scripts
+├── slurm/                  # SLURM submission scripts
+├── main.cxx                # Main program
+├── Makefile                # Compilation instructions
+├── rootlogon.C             # ROOT configuration
+├── Workplan.md             # Project tasks and timeline
+└── ChangeLog               # Record of project changes
 ```
 
-Make sure to document how to do this for any library you choose to use!
+## Data
 
-Have fun!
+The project uses three meteorological parameters obtained from SMHI:
+
+| Parameter | Unit |
+|---|---|
+| Temperature | °C |
+| Precipitation | mm |
+| Global solar irradiance | W/m² |
+
+The original datasets are stored in `datasets/raw_data/`. Cleaned datasets are stored in `datasets/derived_data/`.
+
+The data preparation scripts remove unnecessary metadata and format the measurements for C++ import.
+
+Further information about the measurement stations, CSV formats, and preprocessing can be found in [datasets/README.md](datasets/README.md).
+
+## Building and running
+
+The project uses C++17.
+
+### Requirements
+
+- g++ (C++17 compatible)
+- GNU Make
+- [fast-cpp-csv-parser](https://github.com/ben-strasser/fast-cpp-csv-parser)
+- ROOT (for statistical analysis and plotting)
+
+The CSV library header must be available at `external/include/csv/csv.h`. The Makefile must include `-I external/include` in its compiler flags.
+
+To compile the project from the repository root:
+
+```bash
+make
+```
+
+Run the executable:
+
+```bash
+./main
+```
+
+To remove compiled files:
+
+```bash
+make clean
+```
+
+## Data processing and analysis
+
+The project follows these steps:
+
+1. **Data preparation:** Bash scripts extract the relevant measurements from the original SMHI datasets.
+2. **Data import and conversion:** C++ functions import the cleaned CSV files into memory.Dates are separated into year and day-of-year values (1–366), while hours are converted into integers (0–23).
+3. **Statistical analysis:** Measurements are grouped and analysed to identify seasonal patterns, long-term changes, and differences between the cities.
+4. **Visualization:** ROOT is used to produce plots for the climate comparisons.
+
+The CSV importer is implemented in `src/parse_csv.cxx` and declared in `include/parse_csv.h`. It supports three-column and four-column cleaned datasets.
+
+During analysis, measurements must be compared over common time periods, accounting for missing observations and quality indicators.
+
+## Team
+
+- Elena Sanchez Nunez
+- Gabriel Corrigan Fornvik
+- Georges Nguyen
+- Manuel Lorente Rodriguez
+
+For individual responsibilities and deadlines, see [Workplan.md](Workplan.md).
+
+## References
+
+- [SMHI – Swedish Meteorological and Hydrological Institute](https://www.smhi.se/)
+- [ROOT Data Analysis Framework](https://root.cern/)
+- [fast-cpp-csv-parser](https://github.com/ben-strasser/fast-cpp-csv-parser)

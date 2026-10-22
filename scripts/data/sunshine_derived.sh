@@ -12,4 +12,4 @@ OUTPUT_FILE="$2"
 LINES_TO_SKIP="$3"
 
 # -n +$3: start reading at line $3, -d ';': use semicolon as delimiter, -f1,2,3,4,5,6: keep only the first 6 columns
-tail -n +$3 "$RAW_DATA_FILE" | cut -d';' -f1,2,3,4,5,6 > "$OUTPUT_FILE"
+tail -n +$3 "$RAW_DATA_FILE" | cut -d';' -f1,2,3,4 | sed 's/;/,/g' > "$OUTPUT_FILE"
