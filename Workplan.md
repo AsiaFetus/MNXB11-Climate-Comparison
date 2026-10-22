@@ -35,7 +35,7 @@ We will investigate four aspects of the climate:
 **20-21 October**
     - Create the Workplan.
     - Inspect the repository and datasets.
-    - Identify Lund and Uppsala stations.
+    - Identify Lund and Umeå stations.
     - Verify data availability and metadata.
 
 **22-23 October**
@@ -95,7 +95,7 @@ We will investigate four aspects of the climate:
     - Integrate the results from the four individual analyses.
     - Produce nice ROOT figures.
     - Check consistency of units, labels and uncertainties.
-    - Compare the results between Lund and Uppsala.
+    - Compare the results between Lund and Umeå.
 
 8. **Report**
     RESPONSIBLE: 
