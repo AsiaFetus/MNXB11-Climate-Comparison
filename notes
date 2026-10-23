@@ -9,5 +9,7 @@ Umeå Flygplats- Quality change on/off from 1962-03-16(1021 seems like outlier).
 
 Verdict for accepted data entries. 
 	Lund - Take annual mean from 1863-01-01 omitting the all previous unconfirmed data due to extrapolation uncertainties. 
+	2025 final year included.
 
-	Umeå Flygplats - Take annual mean from the first consitent verified point 1962-03-16, 09:00:00, omitting previous unconfirmed data points due to extrapolation uncertainties.  
+	Umeå Flygplats - Take annual mean from the first consitent verified point 1965-01-01, 09:00:00, omitting previous unconfirmed data points due to extrapolation uncertainties. 
+	2025 final year included.
