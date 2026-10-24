@@ -24,6 +24,9 @@ int dayOfYear(const std::string& date) {
 
     ss >> std::get_time(&time, "%Y-%m-%d"); // Parse the date string in to the time object
 
+    time.tm_isdst = -1; // Set daylight saving time flag to -1 to let mktime determine if DST is in effect
+    std::mktime(&time); // Normalize the time object to fill in the tm_yday field
+
     return time.tm_yday + 1; // Return the day of the year (0-365) + 1
 }
 
