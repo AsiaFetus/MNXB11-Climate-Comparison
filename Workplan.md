@@ -26,9 +26,9 @@ We will investigate four aspects of the climate:
     - How does precipitation vary throughout the year and between the two cities?
     - Which city receives more precipitation during different parts of the year?
 
-4. **Comparison of Observed Sunshine Duration** (Manuel)
-    - How does observed sunshine duration vary throughout the year in Lund and Umeå?
-    - How does the difference in latitude between the cities affect the observed sunshine duration?
+4. **Comparison of Observed Solar Irradiance** (Manuel)
+    - How does observed solar irradiance vary throughout the year in Lund and Umeå?
+    - How does the difference in latitude between the cities affect the observed solar irradiance?
 
 # Timeline:
     
