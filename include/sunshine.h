@@ -19,4 +19,22 @@ SunshineQuality analyzeSunshineData(const std::vector<std::vector<std::string>>&
 
 void printSunshineQuality(const SunshineQuality& quality);
 
+struct SunshineProfile {
+    std::vector<double> days;
+    std::vector<double> meanValues;
+};
+
+SunshineProfile averageSunshineByDay(
+    const std::vector<std::vector<std::string>>& data
+);
+
+void plotSunshineHistogram(const SunshineProfile& profile, const std::string& city);
+
+void plotSunshineComparison(
+    const SunshineProfile& profile1,
+    const SunshineProfile& profile2,
+    const std::string& city1,
+    const std::string& city2
+);
+
 #endif 
