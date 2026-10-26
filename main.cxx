@@ -1,15 +1,26 @@
 #include "parse_csv.h"
-#include <iostream>
-int main(int argc, char *argv[]) {
-  std::cout << "I am just a code template, you need to implement the "
-               "functionality you want to use yourself!"
-            << std::endl;
+#include "sunshine.h"
 
-  std::cout << "We were passed " << argc
-            << " command line arguments, the first of which was " << argv[0]
-            << std::endl;
-  std::cout << "With a good CLI library, we could use the command line "
-               "arguments to make a useful program."
-            << std::endl;
-  return 0;
+#include <TCanvas.h>
+#include <TH2D.h>
+#include <TStyle.h>
+
+#include <iostream>
+#include <string>
+
+int main() {
+
+    auto umea = parseCSV(
+        "datasets/derived_data/sunshine/umea_sunshine_derived.csv", 4
+    );
+    auto lund = parseCSV(
+        "datasets/derived_data/sunshine/lund_sunshine_derived.csv", 4
+    );
+
+    SunshineQuality umea_quality = analyzeSunshineData(umea);
+    SunshineQuality lund_quality = analyzeSunshineData(lund);
+    printSunshineQuality(umea_quality);
+    printSunshineQuality(lund_quality);
+
+    return 0;
 }

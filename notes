@@ -1,0 +1,15 @@
+Lund- Quality changes to controlled and verified at entry 74975, 1863-01-01, entries hours, 07,13,20.
+Changes to hours 07,13,18 from 1941-01-01(160244).
+Changes to hours 06,12,16 from 1947-01-01(166814).
+	Stays this way until current time. 
+
+
+Umeå Flygplats- Quality change on/off from 1962-03-16(1021 seems like outlier). Actual on/off every 3 or 6 hours from 1965-01-01(16018). Full verification from 2010-08-01 (377539), every hour.
+
+
+Verdict for accepted data entries. 
+	Lund - Take annual mean from 1863-01-01 omitting the all previous unconfirmed data due to extrapolation uncertainties. 
+	2025 final year included.
+
+	Umeå Flygplats - Take annual mean from the first consitent verified point 1965-01-01, 09:00:00, omitting previous unconfirmed data points due to extrapolation uncertainties. 
+	2025 final year included.

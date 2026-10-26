@@ -26,16 +26,16 @@ We will investigate four aspects of the climate:
     - How does precipitation vary throughout the year and between the two cities?
     - Which city receives more precipitation during different parts of the year?
 
-4. **Comparison of Observed Sunshine Duration** (Manuel)
-    - How does observed sunshine duration vary throughout the year in Lund and Umeå?
-    - How does the difference in latitude between the cities affect the observed sunshine duration?
+4. **Comparison of Observed Solar Irradiance** (Manuel)
+    - How does observed solar irradiance vary throughout the year in Lund and Umeå?
+    - How does the difference in latitude between the cities affect the observed solar irradiance?
 
 # Timeline:
     
 **20-21 October**
     - Create the Workplan.
     - Inspect the repository and datasets.
-    - Identify Lund and Uppsala stations.
+    - Identify Lund and Umeå stations.
     - Verify data availability and metadata.
 
 **22-23 October**
@@ -95,7 +95,7 @@ We will investigate four aspects of the climate:
     - Integrate the results from the four individual analyses.
     - Produce nice ROOT figures.
     - Check consistency of units, labels and uncertainties.
-    - Compare the results between Lund and Uppsala.
+    - Compare the results between Lund and Umeå.
 
 8. **Report**
     RESPONSIBLE: 
