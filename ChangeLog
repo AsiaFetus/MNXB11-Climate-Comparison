@@ -12,21 +12,32 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Fine grained description of important things that you want to communicate
 	* Fine grained description of important things that you want to communicate
 
+# Our changelog:
 
-# Example (entries from newest to oldest):
+2026-10-26 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Reorganized and simplified solar irradiance calculations and added three plotting functions.
 
-2025-09-26 Florido Paganelli  <florido.paganelli@fysik.lu.se>
+	* Modified include/sunshine.h and src/sunshine.cxx to simplify the daily and yearly average calculations by reusing the sunshineByYearAndDay function.
+	* Created include/sunshine_plot.h and src/sunshine_plot.cxx to separate data processing from ROOT visualization.
+	* Implemented three plotting functions:
+		* Daily solar irradiation comparison between Lund and Umeå, showing their average.
+		* Daily solar irradiation histogram showing the average with individual years displayed as transparent curves in the background.
+		* Annual mean solar irradiance comparison between Lund and Umeå, including linear regression fits.
 
-	Reviewing content of project template
+2026-10-25 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Data analysis for solar irradiance. 
 
-	* Added ChangeLog.txt with comments and examples
+	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data. 
+	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data. 
 
-2025-09-25 Florido Paganelli  <florido.paganelli@fysik.lu.se>
+2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Data import in to CPP code.
 
-	Reviewing content of project template
-
-	* Checking directory structure
-	* Added Workplan.md
+	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
+	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
+	* Updated sunshine_derived.sh to make data separation with `,`.
+	* Reorganized data processing scripts into scripts/data/ 
+	* Updated READMEs for datasets folder and main project.
 
 2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 	Extracted raw data and removed unnecessary files
@@ -38,29 +49,4 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	Data derived script for shunshie and dependencies
 
 	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived. 
-	* Added dependency to read CSV files in CPP. 
-
-2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data import in to CPP code.
-
-	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
-	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
-	* Updated sunshine_derived.sh to make data separation with `,`.
-	* Reorganized data processing scripts into scripts/data/ 
-	* Updated READMEs for datasets folder and main project. 
-
-2026-10-25 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data analysis for solar irradiance. 
-
-	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data. 
-	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data. 
-
-2026-10-26 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Reorganized and simplified solar irradiance calculations and added three plotting functions.
-
-	* Modified include/sunshine.h and src/sunshine.cxx to simplify the daily and yearly average calculations by reusing the sunshineByYearAndDay function.
-	* Created include/sunshine_plot.h and src/sunshine_plot.cxx to separate data processing from ROOT visualization.
-	* Implemented three plotting functions:
-		* Daily solar irradiation comparison between Lund and Umeå, showing their average.
-		* Daily solar irradiation histogram showing the average with individual years displayed as transparent curves in the background.
-		* Annual mean solar irradiance comparison between Lund and Umeå, including linear regression fits.
+	* Added dependency to read CSV files in CPP.  
