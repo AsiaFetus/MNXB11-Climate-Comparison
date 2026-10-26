@@ -2,9 +2,9 @@ CXX := g++
 CXXWARNINGS := -Wall -Wextra -Werror
 CXXOPT := -O3
 CXXSTD := -std=c++17
-INCLUDES := -I include -I external/include
+INCLUDES := -I include -I external/include $(shell root-config --cflags)
 CXXFLAGS := $(CXXWARNINGS) $(CXXSTD) $(CXXOPT) $(INCLUDES)
-LDFLAGS :=
+LDFLAGS := $(shell root-config --libs)
 
 .PHONY: all clean
 
