@@ -3,34 +3,31 @@
 #include <ctime>
 #include <iostream>
 
-#include <TH1D.h>
-#include <TCanvas.h>
-#include <TLegend.h>
+#include <vector>
+#include <string>
 
-SunshineQuality analyzeSunshineData(const std::vector<std::vector<std::string>>& data) {
-    SunshineQuality quality; // Initialize a SunshineQuality struct to hold the counts of different quality categories
+SunshineQuality analyzeSunshineData(
+    const std::vector<std::vector<std::string>>& data
+) {
+    SunshineQuality quality; // Initialize constructor
 
-    for (const auto& row : data) {
-        quality.total++; // Increment the total count of observations
+    for (const auto& row : data) { // Loop through each row of the data
+        quality.total++;
 
-        int year = std::stoi(row[0]); // Convert the year string to an integer
-        int day = std::stoi(row[1]); // Convert the day to an integer 
-        double sunshine_value = std::stod(row[3]); // Convert the sunshine value string to a double
-        std::string quality_str = row[4]; // Get the quality string
-
-        if (quality_str == "G") {
-            quality.good++; // Increment the count of good quality observations
-        } else if (quality_str == "Y") {
-            quality.yellow++; // Increment the count of yellow quality observations
-            quality.yellowYears.push_back(year); // Store the year of the yellow observation
-            quality.yellowDays.push_back(day); // Store the day of the yellow observation
+        if (row[4] == "G") {
+            quality.good++;
+        } else if (row[4] == "Y") {
+            quality.yellow++;
+            // Store the year of the yellow observation
+            quality.yellowYears.push_back(std::stoi(row[0]));
+            // Store the day of the yellow observation
+            quality.yellowDays.push_back(std::stoi(row[1]));
         } else {
-            quality.other++; // Increment the count of other quality observations
+            quality.other++;
         }
 
-        if (sunshine_value < 0) {
-            quality.negative++; // Increment the count of negative sunshine values
-        }
+        if (std::stod(row[3]) < 0) // Check for negative sunshine values
+            quality.negative++;
     }
 
     return quality;
@@ -44,12 +41,12 @@ void printSunshineQuality(const SunshineQuality& quality) {
     std::cout << "Negative sunshine values: " << quality.negative << std::endl;
     std::cout << "\n" << "Yellow quality observations by year and day:" << std::endl;
 
-    if (!quality.yellowYears.empty()) { // Check if there are any yellow quality observations
+    if (!quality.yellowYears.empty()) { // Check for any yellow observations
 
-        int firstYear = quality.yellowYears.front(); // Get the first year with yellow quality observations
-        int lastYear = quality.yellowYears.back(); // Get the last year with yellow quality observations
+        int firstYear = quality.yellowYears.front(); // First year with yellow observations
+        int lastYear = quality.yellowYears.back(); // Last year with yellow observations
 
-        for (int year = firstYear; year <= lastYear; year++) {
+        for (int year = firstYear; year <= lastYear; year++) { // Loop through each year in the range of yellow observations
 
             int one = 0;
             int twoToFive = 0;
@@ -63,7 +60,6 @@ void printSunshineQuality(const SunshineQuality& quality) {
                 // Count yellow observations on this day
                 // Loop through all yellow observations years (one value per yellow observation, repeated years)
                 for (size_t i = 0; i < quality.yellowYears.size(); i++) {  
-
                     if (quality.yellowYears[i] == year &&
                         quality.yellowDays[i] == day) {
                         count++;
@@ -91,134 +87,82 @@ void printSunshineQuality(const SunshineQuality& quality) {
 }
 
 
-SunshineProfile averageSunshineByDay(
+std::vector<std::vector<double>> sunshineByYearAndDay(
     const std::vector<std::vector<std::string>>& data
 ) {
-    // Get the first and last year from the data
-    int firstYear = std::stoi(data.front()[0]);
-    int lastYear = std::stoi(data.back()[0]);
-    int numberOfYears = lastYear - firstYear + 1;
+    int firstYear = std::stoi(data.front()[0]); 
+    int numberOfYears = std::stoi(data.back()[0]) - firstYear + 1; // Last year - First year + 1 to include both endpoints
 
-    // Create a 2D vector to store daily irradiation for each year
     std::vector<std::vector<double>> irradiation(
         numberOfYears, std::vector<double>(366, 0.0)
-    );
+    ); // Initialize a 2D vector to store daily irradiation for each year
 
-    // Go through every observation
-    for (const auto& row : data) {
+    for (const auto& row : data) { // Loop through each row of the data
         int year = std::stoi(row[0]);
         int day = std::stoi(row[1]);
         double value = std::stod(row[3]);
 
-        // Check if it is a leap year
+        // Check if the year is a leap year
         bool leap = (year % 4 == 0 &&
                      (year % 100 != 0 || year % 400 == 0));
 
-        // Remove February 29 and adjust following days
+        // Remove Feb 29 and shift later days
         if (leap && day == 60) continue;
         if (leap && day > 60) day--;
 
-        if (day < 1 || day > 365) continue;
-
-        // Convert the year to an index starting from 0
-        int yearIndex = year - firstYear;
-
-        // Add the hourly irradiance to that year's daily total
-        irradiation[yearIndex][day] += value;
+        irradiation[year - firstYear][day] += value; // Store the daily irradiation value in the corresponding year and day
     }
+
+    return irradiation;
+}
+
+SunshineProfile averageSunshineByDay(
+    const std::vector<std::vector<std::string>>& data
+) {
+    auto irradiation = sunshineByYearAndDay(data);
+    int numberOfYears = irradiation.size();
+
+    SunshineProfile result; // Initialize a SunshineProfile to store the average sunshine by day
+
+    // Calculate the average sunshine for each day
+    for (int day = 1; day <= 365; day++) {
+        double total = 0;
+
+        for (int year = 0; year < numberOfYears; year++)
+            total += irradiation[year][day];
+
+        // Last year only includes January to July
+        int yearsToAverage = numberOfYears - (day > 182);
+
+        result.days.push_back(day);
+        result.meanValues.push_back(total / yearsToAverage);
+    }
+
+    return result;
+}
+SunshineProfile averageSunshineByYear(
+    const std::vector<std::vector<std::string>>& data
+) {
+    auto irradiation = sunshineByYearAndDay(data);
+    int firstYear = std::stoi(data.front()[0]);
 
     SunshineProfile result;
 
-    // Calculate the average irradiation for each day of the year
-    for (int day = 1; day <= 365; day++) {
+    // Loop thorough each year and calculate the total sunshine for that year
+    for (size_t year = 0; year < irradiation.size(); year++) {
         double total = 0.0;
 
-        for (int year = 0; year < numberOfYears; year++) {
+        // Calculate the total sunshine for the year
+        for (int day = 1; day <= 365; day++)
             total += irradiation[year][day];
-        }
 
-        // July 1 is day 182 in a non-leap year
-        int yearsToAverage = numberOfYears;
+        int actualYear = firstYear + year;
 
-        if (day > 182) {
-            yearsToAverage--;
-        }
-
-        result.days.push_back(day);
+        result.days.push_back(actualYear);
         result.meanValues.push_back(
-            total / yearsToAverage
+            total / (actualYear == 2026 ? 4351.0 : 8760.0) // Use 4351 hours for 2026 (Jan-Jul) and 8760 hours for other years
         );
     }
+
     return result;
-}
-
-
-void plotSunshineHistogram(
-    const SunshineProfile& profile,
-    const std::string& city
-) {
-    TCanvas canvas("canvas", "Sunshine histogram", 1000, 600);
-
-    TH1D hist(
-        "hist",
-        ("Average daily irradiation in " + city +
-         ";Day of year;Daily irradiation (Wh/m^{2})").c_str(),
-        365, 0.5, 365.5
-    );
-
-    for (size_t i = 0; i < profile.days.size(); i++) {
-        int day = static_cast<int>(profile.days[i]);
-        hist.SetBinContent(day, profile.meanValues[i]);
-    }
-
-    hist.Draw("HIST");
-
-    canvas.SaveAs((city + "_sunshine.pdf").c_str());
-}
-
-void plotSunshineComparison(
-    const SunshineProfile& profile1,
-    const SunshineProfile& profile2,
-    const std::string& city1,
-    const std::string& city2
-) {
-    TCanvas canvas("canvas", "Sunshine comparison", 1000, 600);
-
-    TH1D hist1(
-        "hist1",
-        ("Average daily irradiation;Day of year;Daily irradiation (Wh/m^{2})"),
-        365, 0.5, 365.5
-    );
-
-    TH1D hist2(
-        "hist2",
-        ("Average daily irradiation;Day of year;Daily irradiation (Wh/m^{2})"),
-        365, 0.5, 365.5
-    );
-
-    for (size_t i = 0; i < profile1.days.size(); i++) {
-        int day = static_cast<int>(profile1.days[i]);
-        hist1.SetBinContent(day, profile1.meanValues[i]);
-    }
-
-    for (size_t i = 0; i < profile2.days.size(); i++) {
-        int day = static_cast<int>(profile2.days[i]);
-        hist2.SetBinContent(day, profile2.meanValues[i]);
-    }
-
-    hist1.SetLineColor(kBlue);
-    hist1.SetLineWidth(2);
-
-    hist2.SetLineColor(kRed);
-    hist2.SetLineWidth(2);
-
-    hist1.Draw("HIST");
-    hist2.Draw("HIST SAME");
-
-    TLegend legend(0.75, 0.75, 0.90, 0.90);
-    legend.AddEntry(&hist1, city1.c_str(), "l");
-    legend.AddEntry(&hist2, city2.c_str(), "l");
-    legend.Draw();
-
-    canvas.SaveAs((city1 + "_" + city2 + "_sunshine_comparison.pdf").c_str());
 }

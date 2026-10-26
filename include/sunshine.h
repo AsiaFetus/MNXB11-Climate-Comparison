@@ -24,17 +24,16 @@ struct SunshineProfile {
     std::vector<double> meanValues;
 };
 
+std::vector<std::vector<double>> sunshineByYearAndDay(
+    const std::vector<std::vector<std::string>>& data
+);
+
 SunshineProfile averageSunshineByDay(
     const std::vector<std::vector<std::string>>& data
 );
 
-void plotSunshineHistogram(const SunshineProfile& profile, const std::string& city);
-
-void plotSunshineComparison(
-    const SunshineProfile& profile1,
-    const SunshineProfile& profile2,
-    const std::string& city1,
-    const std::string& city2
+SunshineProfile averageSunshineByYear(
+    const std::vector<std::vector<std::string>>& data
 );
 
 #endif 

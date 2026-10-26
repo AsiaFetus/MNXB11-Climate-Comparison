@@ -25,6 +25,8 @@ MNXB11-Climate-Comparison/
 │   ├── raw_data/           # Original SMHI data
 │   ├── derived_data/       # Cleaned CSV files
 │   └── README.md           # Dataset documentation
+├── results/
+│   └── sunshine/          # Generated solar irradiation plots
 ├── include/                # C++ header files
 ├── src/                    # C++ source files
 ├── scripts/
@@ -95,7 +97,16 @@ The project follows these steps:
 
 The CSV importer is implemented in `src/parse_csv.cxx` and declared in `include/parse_csv.h`. It supports three-column and four-column cleaned datasets.
 
-During analysis, measurements must be compared over common time periods, accounting for missing observations and quality indicators.
+### Solar irradiance analysis
+
+Solar irradiance data is processed in `src/sunshine.cxx`, using reusable functions to calculate daily and annual averages. Visualization is implemented separately in `src/sunshine_plot.cxx` using ROOT.
+
+Three types of plots are generated:
+- Average daily solar irradiation comparison between Lund and Umeå.
+- Daily irradiation histograms showing the average and individual years.
+- Annual mean solar irradiance comparison with linear regression fits to identify long-term trends.
+
+The generated figures are saved in `results/sunshine/`.
 
 ## Team
 
