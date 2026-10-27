@@ -26,6 +26,10 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Added ROOT plotting of seasonal mean temperatures for Lund and Umeå with standard-deviation error bars.
 	* Updated the Makefile and main.cxx to include and run the temperature analysis and plotting.
 
+2026-10-26 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Data analysis for mean annual temperature
+	* Formed preliminary histogram for single plots and comparison plots. 
+
 2026-10-26 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
 	Reorganized and simplified solar irradiance calculations and added three plotting functions.
 
@@ -41,6 +45,17 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data.
 	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data.
+ 
+2026-10-24 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Derived relevant data for mean annual temperature
+	* Parsed temperature datasets
+	* Added functions to calculate mean annual temperature into vector format
+
+2026-10-23 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Filtered temperature datasets
+
+	* Added bash script to derive data for temperature.
+	* Removed and filtered out extrapolated data.
 
 2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
 	Data import in to CPP code.
@@ -81,9 +96,4 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	2. Long-term changes in mean annual temperature (Georges)
 	3. Comparison of Precipitation (Gabriel)
 	4. Comparison of Observed Solar Irradiance (Manuel)
-
-
-
-
-
 
