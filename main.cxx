@@ -1,30 +1,38 @@
 #include "parse_csv.h"
 #include "sunshine.h"
+#include "sunshine_plot.h"
 #include "temperature.h"
 
-#include <TCanvas.h>
-#include <TH2D.h>
-#include <TStyle.h>
-
 #include <iostream>
-#include <string>
 
 int main() {
+    // SUNSHINE DATA ANALYSIS AND PLOTTING
 
-    //Analysis 4
-    auto umea = parseCSV(
-        "datasets/derived_data/sunshine/umea_sunshine_derived.csv", 4
-    );
+    // Import data
     auto lund = parseCSV(
         "datasets/derived_data/sunshine/lund_sunshine_derived.csv", 4
     );
 
-    SunshineQuality umea_quality = analyzeSunshineData(umea);
-    SunshineQuality lund_quality = analyzeSunshineData(lund);
-    printSunshineQuality(umea_quality);
-    printSunshineQuality(lund_quality);
+    auto umea = parseCSV(
+        "datasets/derived_data/sunshine/umea_sunshine_derived.csv", 4
+    );
 
-    //Analysis 1
+    // Calculate averages
+    auto lundDaily = averageSunshineByDay(lund);
+    auto umeaDaily = averageSunshineByDay(umea);
+
+    auto lundYearly = averageSunshineByYear(lund);
+    auto umeaYearly = averageSunshineByYear(umea);
+
+    // Generate plots
+    plotSunshineAllYears(lund, lundDaily, "Lund");
+    plotSunshineAllYears(umea, umeaDaily, "Umea");
+
+    plotSunshineComparison(lundDaily, umeaDaily, "Lund", "Umea");
+    plotYearlySunshineComparison(lundYearly, umeaYearly, "Lund", "Umea");
+
+    //ANALYSIS 1: SEASONAL VARIATION IN MEAN TEMPERATURE
+
     auto umea_temperature = parseCSV(
         "datasets/derived_data/temperature/Umeå_temp_derived.csv", 4
     );
