@@ -16,7 +16,7 @@ all: main
 #
 # Remove the Example object file when you are done looking at it, it doesn't
 # contribute to the executable!
-main: main.cxx src/parse_csv.o src/sunshine.o src/sunshine_plot.o
+main: main.cxx src/parse_csv.o src/sunshine.o src/temperature.o src/sunshine_plot.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 src/%.o: src/%.cxx
