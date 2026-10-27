@@ -14,6 +14,16 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 # Our changelog:
 
+2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Added yearly temperature plots and improved temperature comparison figures.
+
+	* Added plots showing daily mean temperatures for individual years in Lund and Umeå, with the 2011–2025 average.
+	* Added labels identifying individual years and the overall average in the yearly plots.
+	* Improved plot titles and line widths for readability.
+	* Updated the seasonal comparison plot to show the mean temperature curves without error bars.
+	* Updated main.cxx and temperature_plot.h to generate the new yearly plots.
+
 2026-10-27 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 
 	Added code to extract the precipitation data, the external CSV library, and the results folder
