@@ -14,6 +14,16 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 # Our changelog:
 
+2026-10-27 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+
+	Added code to extract the precipitation data, the external CSV library, and the results folder
+
+	* Added precipitation.h and precipitation.cxx with measurement class containing data for each observation.
+	* Made a function to extract the data of the CSV:s, returning a vector of measurement objects. The function makes use of the CSV library and dayOfYear in `parse_csv.h` to convert month-day to a number 1-365, excluding Feb 29th in leap years.
+	* Added results/ folder structure in order for main to run
+	* Added external library csv/csv.h in include/
+	* Modified main.cxx and makefile to implement data extraction and test it
+
 2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
 
 	Added temperature data processing and seasonal temperature analysis for Lund and Umeå.
