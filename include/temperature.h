@@ -22,4 +22,14 @@ std::vector<std::vector<std::string>> parseTemperatureCSV(
     const std::string& filename
 );
 
+struct TemperatureProfile {
+    std::vector<int> days;
+    std::vector<double> meanValues;
+    std::vector<double> standardDeviations;
+};
+
+TemperatureProfile calculateMeanTemperatureByDayOfYear(
+    const std::vector<DailyTemperature>& dailyData
+);
+
 #endif

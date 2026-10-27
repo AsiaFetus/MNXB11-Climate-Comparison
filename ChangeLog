@@ -3,7 +3,7 @@
 // NOTE: copying git log over this file is NOT a ChangeLog! See this: <https://www.gnu.org/prep/standards/html_node/Change-Logs.html>
 // Changelog is a summary of a lot of related commits.
 
-# Template: 
+# Template:
 
 YYYY-MM-DD Name LastName  <email@somewhere>
 
@@ -13,6 +13,18 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Fine grained description of important things that you want to communicate
 
 # Our changelog:
+
+2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Added temperature data processing and seasonal temperature analysis for Lund and Umeå.
+
+	* Added a temperature CSV parser to handle the temperature data header and four-column format, and updated main.cxx to use it for the temperature datasets.
+	* Added daily mean temperature calculation for the 2011–2025 analysis period, requiring at least two valid observations per day.
+	* Added tracking of temperature data quality flags for daily observations.
+	* Added seasonal mean temperature calculation by day of year, using a common 365-day calendar, excluding February 29 and shifting subsequent leap-year dates by one day.
+	* Added calculation of the standard deviation of daily mean temperatures for each day of the year.
+	* Added ROOT plotting of seasonal mean temperatures for Lund and Umeå with standard-deviation error bars.
+	* Updated the Makefile and main.cxx to include and run the temperature analysis and plotting.
 
 2026-10-26 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
 	Reorganized and simplified solar irradiance calculations and added three plotting functions.
@@ -25,10 +37,10 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 		* Annual mean solar irradiance comparison between Lund and Umeå, including linear regression fits.
 
 2026-10-25 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data analysis for solar irradiance. 
+	Data analysis for solar irradiance.
 
-	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data. 
-	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data. 
+	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data.
+	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data.
 
 2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
 	Data import in to CPP code.
@@ -36,17 +48,42 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
 	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
 	* Updated sunshine_derived.sh to make data separation with `,`.
-	* Reorganized data processing scripts into scripts/data/ 
+	* Reorganized data processing scripts into scripts/data/
 	* Updated READMEs for datasets folder and main project.
 
+2026-10-21 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+
+	Data derived script for shunshie and dependencies
+
+	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived.
+
+	* Added dependency to read CSV files in CPP.
+
 2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+
 	Extracted raw data and removed unnecessary files
 
 	* Added raw_data in datasets/ with extracted data from datasets.tgz
 	* Removed data files not from Umeå and Lund weather stations
 
-2026-10-21 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data derived script for shunshie and dependencies
+2026-10-21 Elena Sanchez  <el8432sa-s@student.lu.se>
 
-	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived. 
-	* Added dependency to read CSV files in CPP.  
+	Added missing data files from SMHI:
+	* precipitation_lund_53430.csv
+	* precipitation_umea_robacksdalen_140490.csv
+	* sunshine_lund_53445.csv
+	* sunshine_umea_140615.csv
+
+2026-10-20 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Updated project Workplan
+	1. Seasonal variation in mean temperature (Elena)
+	2. Long-term changes in mean annual temperature (Georges)
+	3. Comparison of Precipitation (Gabriel)
+	4. Comparison of Observed Solar Irradiance (Manuel)
+
+
+
+
+
+
