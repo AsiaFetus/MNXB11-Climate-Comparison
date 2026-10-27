@@ -48,3 +48,19 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Updated sunshine_derived.sh to make data separation with `,`.
 	* Reorganized data processing scripts into scripts/data/ 
 	* Updated READMEs for datasets folder and main project. 
+
+2026-10-23 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Filtered temperature datasets
+
+	* Added bash script to derive data for temperature.
+	* Removed and filtered out extrapolated data.
+
+2026-10-24 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Derived relevant data for mean annual temperature
+	* Parsed temperature datasets
+	* Added functions to calculate mean annual temperature into vector format
+
+2026-10-26 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Data analysis for mean annual temperature
+	* Formed preliminary histogram for single plots and comparison plots. 
+	

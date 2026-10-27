@@ -14,20 +14,17 @@
 
 
 annualtemp::annualtemp(const std::string& areaName,const std::string& file) : name(areaName) {
+    std::vector<std::vector<std::string>> rawdata = parseCSV(file, 4);
 
     /*
-    // At the START of annualtemp::annualtemp:
-std::cout << "[DEBUG] Constructor STARTED." << std::endl;
-*/
-
-    std::vector<std::vector<std::string>> rawdata = parseCSV(file, 4);
     std::cout << file << "rows" << rawdata.size() << std::endl;
     if (!rawdata.empty()) {
-        std::cout << "--- UMEA COLUMN INSPECT ---" << std::endl;
+        std::cout << "---" << name << " COLUMN INSPECT ---" << std::endl;
         for (size_t c = 0; c < rawdata[1].size(); ++c) {
             std::cout << "  col[" << c << "] = " << rawdata[1][c] << std::endl;
         }
     }
+    */
     std::vector<int> years_temp;
     std::vector<double> year_sum;
     std::vector<int> count;
@@ -62,22 +59,10 @@ std::cout << "[DEBUG] Constructor STARTED." << std::endl;
     for (size_t i = 50; i < limit; ++i) {
         std::cout << "Year: " << years[i] << " | Mean Temp: " << meanTemp[i] << " °C" << std::endl;
 }
-/*
-// At the END of annualtemp::annualtemp:
-std::cout << "[DEBUG] Constructor FINISHED. Stored years size: " << years.size() << std::endl;
-*/
+
 }
 
 void annualtemp::plotTemp(const std::string& filename) const {
-/*
-    // At the START of annualtemp::plotTemp:
-std::cout << "[DEBUG] plotTemp() CALLED. Years size is: " << years.size() << std::endl;
-
-*/
-    if (years.empty() || meanTemp.empty()) {
-        std::cerr << "Error: 'years' or 'meanTemps' vector is empty! Aggregation failed." << std::endl;
-        return;
-    }
     TCanvas *canvas = new TCanvas("canvas", "Temperature Histogram", 1000, 600);
     canvas->SetGrid();
 
@@ -85,14 +70,14 @@ std::cout << "[DEBUG] plotTemp() CALLED. Years size is: " << years.size() << std
     int maxYear = years.back() + 1;
     int nBins = maxYear - minYear;
 
-    TH1D *hist = new TH1D("hist", "Mean Annual Temperature (°C)", nBins, minYear, maxYear);
+    TH1D *hist = new TH1D("hist", "Mean Annual Temperature [°C]", nBins, minYear, maxYear);
 
     for(size_t i = 0; i < years.size(); ++i) {
         int bin = hist->FindBin(years[i]);
         hist->SetBinContent(bin, meanTemp[i]);
     }
 
-    hist->SetTitle("Mean annual temperature;" "Year; Temperature(°C)");
+    hist->SetTitle("Mean annual temperature;" "Year; Temperature[°C]");
     hist->SetStats(0);
     hist->SetFillColor(kAzure + 4);
     hist->Draw("HIST");
@@ -117,6 +102,8 @@ std::cout << "[DEBUG] plotTemp() CALLED. Years size is: " << years.size() << std
     f1->SetLineWidth(2);
     hist->Fit(f1, "R");
     f1->Draw("SAME");
+    gStyle->SetOptFit(0011);
+
     canvas->SaveAs(filename.c_str());
 
 
@@ -128,7 +115,6 @@ void annualtemp::plotTempComp(const annualtemp& other, const std::string& filena
     int endYear = 2025;
     int nBins =  endYear - startYear;
 
-    // 2. Calculate unified Y-axis bounds from BOTH datasets
     double min_val = std::min(
         *std::min_element(meanTemp.begin(), meanTemp.end()),
         *std::min_element(other.meanTemp.begin(), other.meanTemp.end())
@@ -139,8 +125,8 @@ void annualtemp::plotTempComp(const annualtemp& other, const std::string& filena
 
     TCanvas *canvas = new TCanvas("canvas_comp", "Temperature comparison", 1000, 600);
     canvas->SetGrid();
-    TH1D *hist1 = new TH1D("hist1", "Mean Annual Temperature (°C)", nBins, startYear, endYear);
-    TH1D *hist2 = new TH1D("hist2", "Mean Annual Temperature (°C)", nBins, startYear, endYear);
+    TH1D *hist1 = new TH1D("hist1", "Mean Annual Temperature [°C]", nBins, startYear, endYear);
+    TH1D *hist2 = new TH1D("hist2", "Mean Annual Temperature [°C]", nBins, startYear, endYear);
 
     for (size_t i = 0; i< years.size(); ++i) {
         if (years[i] >= startYear && years[i] <=endYear){
@@ -159,7 +145,7 @@ void annualtemp::plotTempComp(const annualtemp& other, const std::string& filena
     hist1->SetStats(0);
     hist1->SetLineColor(kAzure);
     hist1->SetLineWidth(2);
-    hist1->SetTitle("Mean annual temperature comparison;""Year; Temperature(°C)");
+    hist1->SetTitle("Mean annual temperature comparison;""Year; Temperature[°C]");
 
     hist2->SetStats(0);
     hist2->SetLineColor(kRed);
