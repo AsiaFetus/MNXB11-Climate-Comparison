@@ -2,6 +2,7 @@
 #include "sunshine.h"
 #include "sunshine_plot.h"
 #include "temperature.h"
+#include "temperature_plot.h"
 
 #include <iostream>
 
@@ -49,11 +50,28 @@ int main() {
         umea_temperature, 2011, 2025
     );
 
+    auto lundSeasonal =
+        calculateMeanTemperatureByDayOfYear(lund_daily);
+
+    auto umeaSeasonal =
+        calculateMeanTemperatureByDayOfYear(umea_daily);
+
+    plotSeasonalTemperature(
+        lundSeasonal,
+        umeaSeasonal
+    );
+
     std::cout << "Lund daily means: "
               << lund_daily.size() << std::endl;
 
     std::cout << "Umeå daily means: "
               << umea_daily.size() << std::endl;
+    
+    std::cout << "Lund seasonal points: "
+              << lundSeasonal.days.size() << std::endl;
+
+    std::cout << "Umeå seasonal points: "
+              << umeaSeasonal.days.size() << std::endl;
 
     return 0;
 }
