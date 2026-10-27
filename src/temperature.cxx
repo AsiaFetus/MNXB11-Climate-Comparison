@@ -1,8 +1,50 @@
 #include "temperature.h"
 
+#include <fstream>
 #include <map>
+#include <sstream>
+#include <stdexcept>
 #include <string>
 #include <vector>
+
+std::vector<std::vector<std::string>> parseTemperatureCSV(
+    const std::string& filename
+) {
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        throw std::runtime_error(
+            "Could not open temperature file: " + filename
+        );
+    }
+
+    std::vector<std::vector<std::string>> rows;
+    std::string line;
+
+    // Skip the header
+    std::getline(file, line);
+
+    while (std::getline(file, line)) {
+        if (line.empty()) {
+            continue;
+        }
+
+        std::stringstream ss(line);
+        std::string date;
+        std::string time;
+        std::string temperature;
+        std::string quality;
+
+        std::getline(ss, date, ',');
+        std::getline(ss, time, ',');
+        std::getline(ss, temperature, ',');
+        std::getline(ss, quality, ',');
+
+        rows.push_back({date, time, temperature, quality});
+    }
+
+    return rows;
+}
 
 std::vector<DailyTemperature> calculateDailyMean(
     const std::vector<std::vector<std::string>>& data,

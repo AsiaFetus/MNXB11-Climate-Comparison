@@ -18,4 +18,8 @@ std::vector<DailyTemperature> calculateDailyMean(
     int lastYear
 );
 
+std::vector<std::vector<std::string>> parseTemperatureCSV(
+    const std::string& filename
+);
+
 #endif

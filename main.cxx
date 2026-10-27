@@ -33,12 +33,12 @@ int main() {
 
     //ANALYSIS 1: SEASONAL VARIATION IN MEAN TEMPERATURE
 
-    auto umea_temperature = parseCSV(
-        "datasets/derived_data/temperature/Umeå_temp_derived.csv", 4
+    auto umea_temperature = parseTemperatureCSV(
+        "datasets/derived_data/temperature/Umeå_temp_derived.csv"
     );
 
-    auto lund_temperature = parseCSV(
-        "datasets/derived_data/temperature/lund_temp_derived.csv", 4
+    auto lund_temperature = parseTemperatureCSV(
+        "datasets/derived_data/temperature/lund_temp_derived.csv"
     );
 
     auto lund_daily = calculateDailyMean(
