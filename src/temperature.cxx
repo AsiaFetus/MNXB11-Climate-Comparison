@@ -195,12 +195,12 @@ TemperatureProfile calculateMeanTemperatureByDayOfYear(
 
     // Calculate the mean temperature for each day of the year
     for (int i = 0; i < 365; ++i) {
-        result.days.push_back(i + 1);
-
         // Skip days without observations
         if (values[i].empty()) {
-            continue;
+        continue;
         }
+
+        result.days.push_back(i + 1);
 
         // Calculate the average temperature
         double sum = 0.0;
