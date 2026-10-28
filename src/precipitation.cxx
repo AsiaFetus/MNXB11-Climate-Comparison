@@ -1,10 +1,12 @@
 #include "precipitation.h"
 #include "parse_csv.h"
+#include <TH1D.h>
+#include <TCanvas.h>
+#include <csv/csv.h>
 #include <vector>
 #include <string>
 #include <array>
 #include <cmath>
-#include <csv/csv.h>
 
 std::vector<PrecipitationMeasurement> extract_precipitation_data(const std::string& filename, bool only_good_quality)
 {
@@ -102,5 +104,23 @@ DailyStats calculate_day_stats(const std::vector<PrecipitationMeasurement>& data
     }
 
     return results;
+}
 
+
+void plot_precipitation_data(const DailyStats& stats_data, const std::string& city_name, const std::string& output_filename)
+{   
+    TH1D* histogram = new TH1D{"precipitation", ("Seasonal precipitation variation in " + city_name +";Day of year;Mean precipitation (mm)").c_str(), 365, 1, 366};
+
+    for (int bin = 1; bin <= histogram->GetNbinsX(); bin++) {
+        histogram->SetBinContent(bin, stats_data.mean_precipitations[bin - 1]);
+        histogram->SetBinError(bin, stats_data.standard_deviations[bin - 1]);
+    }
+
+    TCanvas* c1 = new TCanvas("c1", "Precipitation", 800, 600);
+
+    histogram->Draw("E1");
+    c1->SaveAs(("results/precipitation/" + output_filename).c_str());
+
+    delete histogram;
+    delete c1;
 }
