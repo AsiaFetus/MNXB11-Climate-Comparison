@@ -96,7 +96,43 @@ void annualtemp::plotTemp(const std::string& filename) const {
     graph->SetLineWidth(2);
     graph->Draw("SAME C");
     */
-    
+    TGraph *f2 = new TGraph();
+    int size = 5;
+    int halfsize = size / 2;
+
+    for(int bin = 1 + halfsize; bin <= hist->GetNbinsX() - halfsize; ++bin){
+        double yearCenter = hist->GetBinCenter(bin);
+        bool exists = false;
+        for (int y : years) {
+            if(y == static_cast<int>(yearCenter)) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) continue;
+        
+        double sum = 0.0;
+        int count = 0;
+        for(int w = -halfsize; w <= halfsize; ++w) {
+            double val = hist->GetBinContent(bin + w);
+            if(val != 0) {
+                sum += val;
+                count++;
+            }
+        }
+        if (count > 0) {
+            double avgtemp = sum / count;
+
+            f2->Expand(f2->GetN() + 1, 100);
+            f2->SetPoint(f2->GetN(), yearCenter, avgtemp);
+        }
+        
+    }
+    f2->SetLineColor(kBlack);
+    f2->SetLineWidth(2);
+    f2->Draw("SAME C");
+
+
     TF1 *f1 = new TF1("f1","pol1", minYear, maxYear);
     f1->SetLineColor(kRed - 4);
     f1->SetLineWidth(2);
