@@ -8,7 +8,7 @@ The objective is to compare the climate of Lund and Umeå using historical meteo
 
 The data is processed using Bash scripts and C++, while ROOT is used for statistical analysis and visualization.
 
-## Project objectives
+## Research questions
 
 We investigate four aspects of the climate:
 
@@ -17,7 +17,7 @@ We investigate four aspects of the climate:
 3. **Precipitation (Gabriel):** How does precipitation vary throughout the year, and which city receives more precipitation?
 4. **Global solar irradiance (Manuel):** How does incoming solar radiation vary throughout the year, and how does the difference in latitude affect the measured irradiance?
 
-## Project structure
+## Repository structure
 
 ```text
 MNXB11-Climate-Comparison/
@@ -26,7 +26,8 @@ MNXB11-Climate-Comparison/
 │   ├── derived_data/       # Cleaned CSV files
 │   └── README.md           # Dataset documentation
 ├── results/
-│   └── sunshine/          # Generated solar irradiation plots
+│   ├── sunshine/           # Generated solar irradiation plots
+│   └── temperature/        # Generated daily mean temperature plots
 ├── include/                # C++ header files
 ├── src/                    # C++ source files
 ├── scripts/
@@ -91,7 +92,7 @@ make clean
 The project follows these steps:
 
 1. **Data preparation:** Bash scripts extract the relevant measurements from the original SMHI datasets.
-2. **Data import and conversion:** C++ functions import the cleaned CSV files into memory.Dates are separated into year and day-of-year values (1–366), while hours are converted into integers (0–23).
+2. **Data import and conversion:** C++ functions import the cleaned CSV files into memory. Dates are separated into year and day-of-year values (1–366), while hours are converted into integers (0–23).
 3. **Statistical analysis:** Measurements are grouped and analysed to identify seasonal patterns, long-term changes, and differences between the cities.
 4. **Visualization:** ROOT is used to produce plots for the climate comparisons.
 
