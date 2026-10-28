@@ -16,11 +16,11 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 2026-10-28 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 
-	Added function to analyse extracted data and return means and std deviations for plotting
+	Added a function to analyse the extracted data and return the means and std deviations - then used in a plotting function which was also implemented.
 
-	* Modified precipitation.h to add new DailyStats type and declare the function.
-	* Implemented the function in precipitation.cxx and performed calculations on the data
-	* Modified main.cxx to test the new functionality
+	* Modified precipitation.h to add new DailyStats type and declare the functions.
+	* Implemented the functions in precipitation.cxx using standard functionality for the statistical calculation and ROOT TH1D for generating the plots. 
+	* Modified main.cxx to test the new functionality.
 
 2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
 

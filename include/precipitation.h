@@ -23,4 +23,6 @@ struct DailyStats {
 
 DailyStats calculate_day_stats(const std::vector<PrecipitationMeasurement>& data);
 
+void plot_precipitation_data(const DailyStats& stats_data, const std::string& city_name, const std::string& output_filename);
+
 #endif
