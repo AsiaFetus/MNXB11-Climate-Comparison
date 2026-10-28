@@ -11,7 +11,7 @@ LINES_TO_SKIP="$3"
 
 # Skip metadata and keep date, time and temp columns
 tail -n +"$((LINES_TO_SKIP + 1))" "$RAW_DATA_FILE" | \
-    awk -F';' '$1 !~ /^2026/' | \
+    awk -F';' '$1 !~ /^2026/ && $1 !~ /^1957/' | \
     cut -d';' -f1,2,3,4 > "$OUTPUT_FILE"
 
 # Add column headers
