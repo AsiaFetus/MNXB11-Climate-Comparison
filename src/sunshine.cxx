@@ -158,9 +158,12 @@ SunshineProfile averageSunshineByYear(
 
         int actualYear = firstYear + year;
 
+        if (actualYear == 2026) {
+            continue; // Skip 2026 as it only has data for January to July
+        }
         result.days.push_back(actualYear);
         result.meanValues.push_back(
-            total / (actualYear == 2026 ? 4351.0 : 8760.0) // Use 4351 hours for 2026 (Jan-Jul) and 8760 hours for other years
+            total / 8760.0
         );
     }
 
