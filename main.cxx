@@ -19,6 +19,15 @@ int main() {
         "datasets/derived_data/sunshine/umea_sunshine_derived.csv", 4
     );
 
+    // Analyze sunshine quality
+    auto lundQuality = analyzeSunshineData(lund);
+    auto umeaQuality = analyzeSunshineData(umea);
+
+    std::cout << "Lund sunshine quality statistics:\n";
+    printSunshineQuality(lundQuality);
+    std::cout << "\nUmeå sunshine quality statistics:\n";
+    printSunshineQuality(umeaQuality);
+
     // Calculate averages
     auto lundDaily = averageSunshineByDay(lund);
     auto umeaDaily = averageSunshineByDay(umea);
