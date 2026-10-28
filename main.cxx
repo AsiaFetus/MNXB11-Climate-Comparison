@@ -35,6 +35,7 @@ int main() {
 
     //ANALYSIS 1: SEASONAL VARIATION IN MEAN TEMPERATURE
 
+    // Import data
     auto umea_temperature = parseTemperatureCSV(
         "datasets/derived_data/temperature/Umeå_temp_derived.csv"
     );
@@ -43,6 +44,7 @@ int main() {
         "datasets/derived_data/temperature/lund_temp_derived.csv"
     );
 
+    //Calculate daily means
     auto lund_daily = calculateDailyMean(
         lund_temperature, 2011, 2025
     );
@@ -51,12 +53,27 @@ int main() {
         umea_temperature, 2011, 2025
     );
 
+    //Calculate mean temperature by day of the year
     auto lundSeasonal =
         calculateMeanTemperatureByDayOfYear(lund_daily);
 
     auto umeaSeasonal =
         calculateMeanTemperatureByDayOfYear(umea_daily);
 
+    //Generate individual yearly temperature plots
+    plotTemperatureAllYears(
+        lund_daily,
+        lundSeasonal,
+        "Lund"
+    );
+
+    plotTemperatureAllYears(
+        umea_daily,
+        umeaSeasonal,
+        "Umea"
+    );
+
+    // Generate the seasonal comparison plot
     plotSeasonalTemperature(
         lundSeasonal,
         umeaSeasonal
