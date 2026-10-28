@@ -124,5 +124,16 @@ int main() {
     std::cout << "Good-quality observations (G): " << lundGood.size() << '\n';
     std::cout << "Total observations: " << lundPrecipitationData.size() << '\n';
 
+    auto lund_stats{calculate_day_stats(lundPrecipitationData)};
+    auto umea_stats{calculate_day_stats(umeaPrecipitationData)};
+
+    std::cout << "(Day " << lund_stats.day_numbers[0] << ") Lund Jan 1 stat:\n";
+    std::cout << "Mean (mm): " << lund_stats.mean_precipitations[0] << '\n';
+    std::cout << "Std deviation (mm): " << lund_stats.standard_deviations[0] << '\n';
+
+    std::cout << "(Day " << umea_stats.day_numbers[364] << ") Umeå Dec 31 stat:\n";
+    std::cout << "Mean (mm): " << umea_stats.mean_precipitations[364] << '\n';
+    std::cout << "Std deviation (mm): " << umea_stats.standard_deviations[364] << '\n';
+
     return 0;
 }
