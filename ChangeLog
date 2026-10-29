@@ -14,6 +14,15 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 # Our changelog:
 
+2026-10-29 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Added support for running the project as a SLURM batch job on COSMOS.
+
+	* Updated scripts/runproject.sh to run the Apptainer container directly, avoiding the XAUTHORITY mount failure in batch jobs.
+	* ChatGPT was used to help solve the XAUTHORITY mount failure.
+	* Updated slurm/project.sbatch with a reusable batch configuration requesting 5 minutes and 1 GiB of memory.
+	* Tested batch execution on COSMOS; the job completed successfully and generated all seven sunshine and temperature PDF plots.
+
 2026-10-28 Elena Sanchez  <el8432sa-s@student.lu.se>
 
 	Improved temperature analysis code and visualizations.

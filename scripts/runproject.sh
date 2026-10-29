@@ -22,7 +22,11 @@ EXECUTABLE="./main"
 
 # Execute main binary
 if [[ -e $EXECUTABLE ]]; then
-  startmnxb11container.sh "$EXECUTABLE"
+  apptainer run \
+    -B /run/user:/run/user \
+    -B /projects:/projects \
+    /projects/hep/fs11/share/mnxb11/containers/mnxb11_al9.latest.sif \
+    "$EXECUTABLE"
 else
   echo "ERROR main executable not found."
   echo "Current path: $PWD"
