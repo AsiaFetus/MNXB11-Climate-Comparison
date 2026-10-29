@@ -99,6 +99,10 @@ The project follows these steps:
 
 The CSV importer is implemented in `src/parse_csv.cxx` and declared in `include/parse_csv.h`. It supports three-column and four-column cleaned datasets.
 
+## Precipitation Analysis
+
+All data is processed in `src/precipitation.cxx` using functions to extract data, calculate the relevant stats for each day, and plot it. The functions are used in `main.cxx` and the results are shown according to the repository structure. The type of plots generated are mean precipitation vs day number for a set of years.
+
 ### Solar irradiance analysis
 
 Solar irradiance data is processed in `src/sunshine.cxx`, using reusable functions to calculate daily and annual averages. Visualization is implemented separately in `src/sunshine_plot.cxx` using ROOT.
