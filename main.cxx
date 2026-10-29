@@ -6,6 +6,7 @@
 #include "precipitation.h"
 
 #include <iostream>
+#include "annualtemp.h"
 
 int main() {
     // SUNSHINE DATA ANALYSIS AND PLOTTING
@@ -112,5 +113,15 @@ int main() {
     plot_precipitation_data(lund_stats, "Lund", "lund_precipitation.pdf");
     plot_precipitation_data(umea_stats, "Umea", "umea_precipitation.pdf");
 
-    return 0;
+annualtemp lund("Lund","datasets/derived_data/temperature/lund_temp_derived.csv");
+
+lund.plotTemp("lund_annual_temp.pdf");
+
+annualtemp umea("Ume#aa", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
+
+umea.plotTemp("umea_annual_temp.pdf");
+
+umea.plotTempComp(lund, "umea_vs_lund_temp_comp.pdf");
+
+return 0;
 }
