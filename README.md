@@ -28,13 +28,14 @@ MNXB11-Climate-Comparison/
 ├── results/
 │   ├── sunshine/           # Generated solar irradiation plots
 │   └── temperature/        # Generated daily mean temperature plots
+│   └── precipitation/      # Generated daily mean precipitation plots
 ├── include/                # C++ header files
 ├── src/                    # C++ source files
 ├── scripts/
 │   └── data/               # Data preprocessing scripts
 ├── slurm/                  # SLURM submission scripts
 ├── main.cxx                # Main program
-├── Makefile                # Compilation instructions
+├── Makefile                 # Compilation instructions
 ├── rootlogon.C             # ROOT configuration
 ├── Workplan.md             # Project tasks and timeline
 └── ChangeLog               # Record of project changes
@@ -97,6 +98,10 @@ The project follows these steps:
 4. **Visualization:** ROOT is used to produce plots for the climate comparisons.
 
 The CSV importer is implemented in `src/parse_csv.cxx` and declared in `include/parse_csv.h`. It supports three-column and four-column cleaned datasets.
+
+## Precipitation Analysis
+
+All data is processed in `src/precipitation.cxx` using functions to extract data, calculate the relevant stats for each day, and plot it. The functions are used in `main.cxx` and the results are shown according to the repository structure. The type of plots generated are mean precipitation vs day number for a set of years. The header is in `include/precipitation.h`.
 
 ### Solar irradiance analysis
 

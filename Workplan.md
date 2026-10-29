@@ -100,4 +100,4 @@ We will investigate four aspects of the climate:
     - Compare the results between Lund and Umeå.
 
 8. **Report**
-    RESPONSIBLE: 
+    RESPONSIBLE: Everyone
