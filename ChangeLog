@@ -14,6 +14,12 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 # Our changelog:
 
+2026-10-29 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+
+	Modified precipitation plotting code to make plots nicer
+
+	* Updated precipitation.cxx to make errorbars gray and means blue and remove hats.
+
 2026-10-29 Elena Sanchez  <el8432sa-s@student.lu.se>
 
 	Added support for running the project as a SLURM batch job on COSMOS.

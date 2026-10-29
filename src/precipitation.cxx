@@ -95,7 +95,7 @@ DailyStats calculate_day_stats(const std::vector<PrecipitationMeasurement>& data
             sum_squared_deviations += (mm_value - mean) * (mm_value - mean);
         }
 
-        const double standard_deviation = std::sqrt(sum_squared_deviations / (n - 1));
+        const double standard_deviation = std::sqrt(sum_squared_deviations / n );
 
         // Append results to vectors
         results.mean_precipitations.push_back(mean);
@@ -118,7 +118,17 @@ void plot_precipitation_data(const DailyStats& stats_data, const std::string& ci
 
     TCanvas* c1 = new TCanvas("c1", "Precipitation", 800, 600);
 
-    histogram->Draw("E1");
+    // Avoid showing negative values as you cant have negative precipitation.
+    histogram->SetMinimum(0.0);
+    histogram->SetMaximum(30.0);
+
+    // Format nicely and draw
+    histogram->SetMarkerColor(kBlue);
+    histogram->SetMarkerStyle(20);
+    histogram->SetMarkerSize(0.5);
+    histogram->SetLineColor(kGray);
+    histogram->Draw("E0");
+
     c1->SaveAs(("results/precipitation/" + output_filename).c_str());
 
     delete histogram;
