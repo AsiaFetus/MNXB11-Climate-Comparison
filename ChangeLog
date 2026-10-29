@@ -14,6 +14,14 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 # Our changelog:
 
+2026-10-28 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Improved temperature analysis code and visualizations.
+
+	* Improved comments in the temperature analysis code for clarity.
+	* Refined temperature plotting code and yearly temperature visualizations.
+	* Removed standardDeviations from TemperatureProfile because it is not used in the current plots.
+  
 2026-10-28 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 
 	Added a function to analyse the extracted data and return the means and std deviations - then used in a plotting function which was also implemented.

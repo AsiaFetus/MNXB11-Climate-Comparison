@@ -44,7 +44,7 @@ int main() {
 
     //ANALYSIS 1: SEASONAL VARIATION IN MEAN TEMPERATURE
 
-    // Import data
+    // Import the derived temperature data for both cities
     auto umea_temperature = parseTemperatureCSV(
         "datasets/derived_data/temperature/Umeå_temp_derived.csv"
     );
@@ -53,7 +53,7 @@ int main() {
         "datasets/derived_data/temperature/lund_temp_derived.csv"
     );
 
-    //Calculate daily means
+    //Calculate mean temperature for each valid day between 2011 and 2025
     auto lund_daily = calculateDailyMean(
         lund_temperature, 2011, 2025
     );
@@ -62,14 +62,14 @@ int main() {
         umea_temperature, 2011, 2025
     );
 
-    //Calculate mean temperature by day of the year
+    //Calculate the average temperature for each day of a common 365-day calendar
     auto lundSeasonal =
         calculateMeanTemperatureByDayOfYear(lund_daily);
 
     auto umeaSeasonal =
         calculateMeanTemperatureByDayOfYear(umea_daily);
 
-    //Generate individual yearly temperature plots
+    //Plot the individual years together with the average seasonal profile for each city
     plotTemperatureAllYears(
         lund_daily,
         lundSeasonal,
@@ -82,12 +82,13 @@ int main() {
         "Umea"
     );
 
-    // Generate the seasonal comparison plot
+    // Generate the average seasonal comparison plot
     plotSeasonalTemperature(
         lundSeasonal,
         umeaSeasonal
     );
 
+    //Print the number of calculated daily means and seasonal data points to check the results
     std::cout << "Lund daily means: "
               << lund_daily.size() << std::endl;
 

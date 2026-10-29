@@ -25,7 +25,6 @@ std::vector<std::vector<std::string>> parseTemperatureCSV(
 struct TemperatureProfile {
     std::vector<int> days;
     std::vector<double> meanValues;
-    std::vector<double> standardDeviations;
 };
 
 TemperatureProfile calculateMeanTemperatureByDayOfYear(
