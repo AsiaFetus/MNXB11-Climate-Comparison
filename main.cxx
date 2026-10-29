@@ -1,8 +1,10 @@
 #include "parse_csv.h"
 #include <iostream>
+#include "annualtemp.h"
 
 int main() {
 
+    /*
     // Import sunshine data from Lund
     auto lund_sunshine = parseCSV("datasets/derived_data/sunshine/lund_sunshine_derived.csv", 4);
 
@@ -15,6 +17,18 @@ int main() {
         }
         std::cout << '\n';
     }
+*/
+    
 
-    return 0;
+annualtemp lund("Lund","datasets/derived_data/temperature/lund_temp_derived.csv");
+
+lund.plotTemp("lund_annual_temp.pdf");
+
+annualtemp umea("Umeå", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
+
+umea.plotTemp("umea_annual_temp.pdf");
+
+umea.plotTempComp(lund, "umea_vs_lund_temp_comp.pdf");
+
+return 0;
 }

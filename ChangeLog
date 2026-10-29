@@ -62,5 +62,18 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 
 2026-10-26 Georges Nguyen <ge5787ng-s@student.lu.se>
 	Data analysis for mean annual temperature
+
+	* Filtered for common year range for data comparison plot 
 	* Formed preliminary histogram for single plots and comparison plots. 
-	
+
+2026-10-27 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Reorganized code and cleaned up diagrams and figures
+	* Added linear regression fits to show yearly temperature trends
+	* Cleaned up figure parameters
+	* Added quality of life changes to annualtemp class to help file creation
+
+2026-10-28 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Fixed data errors and added moving average
+
+	* Removed incomplete year skewing data and plots
+	* Added a function plotting moving average across years. 
