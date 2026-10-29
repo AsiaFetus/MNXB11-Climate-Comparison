@@ -28,13 +28,14 @@ MNXB11-Climate-Comparison/
 ├── results/
 │   ├── sunshine/           # Generated solar irradiation plots
 │   └── temperature/        # Generated daily mean temperature plots
+│   └── precipitation/      # Generated daily mean precipitation plots
 ├── include/                # C++ header files
 ├── src/                    # C++ source files
 ├── scripts/
 │   └── data/               # Data preprocessing scripts
 ├── slurm/                  # SLURM submission scripts
 ├── main.cxx                # Main program
-├── Makefile                # Compilation instructions
+├── Makefile                 # Compilation instructions
 ├── rootlogon.C             # ROOT configuration
 ├── Workplan.md             # Project tasks and timeline
 └── ChangeLog               # Record of project changes
