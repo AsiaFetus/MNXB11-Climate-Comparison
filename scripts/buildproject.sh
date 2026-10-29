@@ -18,4 +18,5 @@ fi
 
 # Build the main, assuming Makefile is in the current path
 echo "Starting build..."
+mkdir -p results/sunshine results/temperature results/precipitation
 startmnxb11container.sh make

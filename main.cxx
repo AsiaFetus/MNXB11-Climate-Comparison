@@ -115,9 +115,9 @@ int main() {
 
     // Temperature anaylsis
     annualtemp lund("Lund", "datasets/derived_data/temperature/lund_temp_derived.csv");
-    annualtemp umea("Ume#aa", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
-    lund.plotTemp("lund_annual_temp.pdf");
-    umea.plotTemp("umea_annual_temp.pdf");
-    lund.plotTempComp(umea,"umea_vs_lund_temp_comp.pdf");
+    annualtemp umea("Umeå", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
+    lund.plotTemp("./results/temperature/lund_annual_temp.pdf");
+    umea.plotTemp("./results/temperature/umea_annual_temp.pdf");
+    lund.plotTempComp(umea,"./results/temperature/umea_vs_lund_temp_comp.pdf");
     return 0;
 }

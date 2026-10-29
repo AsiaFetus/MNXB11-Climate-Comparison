@@ -39,6 +39,9 @@ build/*
 
 # Resulting ROOT files should not be in git
 results/*
+*.pdf
+*.png
+*.root
 
 # Don't add the argumentum library to git
 argumentum*
