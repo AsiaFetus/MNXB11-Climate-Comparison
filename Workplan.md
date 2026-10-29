@@ -26,9 +26,9 @@ We will investigate four aspects of the climate:
     - How does precipitation vary throughout the year and between the two cities?
     - Which city receives more precipitation during different parts of the year?
 
-4. **Comparison of Observed Sunshine Duration** (Manuel)
-    - How does observed sunshine duration vary throughout the year in Lund and Umeå?
-    - How does the difference in latitude between the cities affect the observed sunshine duration?
+4. **Comparison of Observed Solar Irradiance** (Manuel)
+    - How does observed solar irradiance vary throughout the year in Lund and Umeå?
+    - How does the difference in latitude between the cities affect the observed solar irradiance?
 
 # Timeline:
     
@@ -66,17 +66,19 @@ We will investigate four aspects of the climate:
     - Project presentation
 
 # Tasks:
-1. **Data Availability and Preparation**
-    RESPONSIBLE: 
+1. **Data Availability**
+    RESPONSIBLE: Elena
     - Identify the datasets available for Lund and Umeå.
-    - Identify the relevant weather stations and variables.
-    - Check the temporal coverage and units of the datasets.
-    - Check for missing or invalid measurements.
-    - Determine suitable common time periods for the comparisons.
-    - Document the data sources and any limitations.
+    - Identify the relevant weather stations.
+    - Download missing datasets
 
-2. **Data Extraction**
-    RESPONSIBLE: 
+2. **Data Preparation and Extraction**
+   RESPONSIBLE for Temperature data: Georges
+   RESPONSIBLE for Precipitation data: Gabriel
+   RESPONSIBLE for Observed Solar Irradiance data: Manuel
+   - Check data formats, units, temporal coverage, and data quality.
+   - Clean and extract the relevant measurements into derived datasets.
+   - Preserve the original datasets and document the preprocessing steps.
 
 3. **Analysis 1:** Seasonal Variation in Mean Temperature
     RESPONSIBLE: Elena
@@ -87,11 +89,11 @@ We will investigate four aspects of the climate:
 5. **Analysis 3:** Comparison of Precipitation
     RESPONSIBLE: Gabriel
 
-6. **Analysis 4:** Comparison of Daylight Duration
+6. **Analysis 4:** Comparison of Observed Solar Irradiance
     RESPONSIBLE: Manuel
 
 7. **Integration, Final Analysis and ROOT Figures**
-    RESPONSIBLE: 
+    RESPONSIBLE: All team members
     - Integrate the results from the four individual analyses.
     - Produce nice ROOT figures.
     - Check consistency of units, labels and uncertainties.

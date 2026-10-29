@@ -3,7 +3,7 @@
 // NOTE: copying git log over this file is NOT a ChangeLog! See this: <https://www.gnu.org/prep/standards/html_node/Change-Logs.html>
 // Changelog is a summary of a lot of related commits.
 
-# Template: 
+# Template:
 
 YYYY-MM-DD Name LastName  <email@somewhere>
 
@@ -12,42 +12,89 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Fine grained description of important things that you want to communicate
 	* Fine grained description of important things that you want to communicate
 
+# Our changelog:
 
-# Example (entries from newest to oldest):
+2026-10-29 Elena Sanchez  <el8432sa-s@student.lu.se>
 
-2025-09-26 Florido Paganelli  <florido.paganelli@fysik.lu.se>
+	Added support for running the project as a SLURM batch job on COSMOS.
 
-	Reviewing content of project template
+	* Updated scripts/runproject.sh to run the Apptainer container directly, avoiding the XAUTHORITY mount failure in batch jobs.
+	* ChatGPT was used to help solve the XAUTHORITY mount failure.
+	* Updated slurm/project.sbatch with a reusable batch configuration requesting 5 minutes and 1 GiB of memory.
+	* Tested batch execution on COSMOS; the job completed successfully and generated all seven sunshine and temperature PDF plots.
 
-	* Added ChangeLog.txt with comments and examples
+2026-10-28 Elena Sanchez  <el8432sa-s@student.lu.se>
 
-2025-09-25 Florido Paganelli  <florido.paganelli@fysik.lu.se>
+	Improved temperature analysis code and visualizations.
 
-	Reviewing content of project template
+	* Improved comments in the temperature analysis code for clarity.
+	* Refined temperature plotting code and yearly temperature visualizations.
+	* Removed standardDeviations from TemperatureProfile because it is not used in the current plots.
+  
+2026-10-28 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 
-	* Checking directory structure
-	* Added Workplan.md
+	Added a function to analyse the extracted data and return the means and std deviations - then used in a plotting function which was also implemented.
 
-2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
-	Extracted raw data and removed unnecessary files
+	* Modified precipitation.h to add new DailyStats type and declare the functions.
+	* Implemented the functions in precipitation.cxx using standard functionality for the statistical calculation and ROOT TH1D for generating the plots. 
+	* Modified main.cxx to test the new functionality.
 
-	* Added raw_data in datasets/ with extracted data from datasets.tgz
-	* Removed data files not from Umeå and Lund weather stations
+2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
 
-2026-10-21 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data derived script for shunshie and dependencies
+	Added yearly temperature plots and improved temperature comparison figures.
 
-	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived. 
-	* Added dependency to read CSV files in CPP. 
+	* Added plots showing daily mean temperatures for individual years in Lund and Umeå, with the 2011–2025 average.
+	* Added labels identifying individual years and the overall average in the yearly plots.
+	* Improved plot titles and line widths for readability.
+	* Updated the seasonal comparison plot to show the mean temperature curves without error bars.
+	* Updated main.cxx and temperature_plot.h to generate the new yearly plots.
 
-2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
-	Data import in to CPP code.
+2026-10-27 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
 
-	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
-	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
-	* Updated sunshine_derived.sh to make data separation with `,`.
-	* Reorganized data processing scripts into scripts/data/ 
-	* Updated READMEs for datasets folder and main project. 
+	Added code to extract the precipitation data, the external CSV library, and the results folder
+
+	* Added precipitation.h and precipitation.cxx with measurement class containing data for each observation.
+	* Made a function to extract the data of the CSV:s, returning a vector of measurement objects. The function makes use of the CSV library and dayOfYear in `parse_csv.h` to convert month-day to a number 1-365, excluding Feb 29th in leap years.
+	* Added results/ folder structure in order for main to run
+	* Added external library csv/csv.h in include/
+	* Modified main.cxx and makefile to implement data extraction and test it
+
+2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Added temperature data processing and seasonal temperature analysis for Lund and Umeå.
+
+	* Added a temperature CSV parser to handle the temperature data header and four-column format, and updated main.cxx to use it for the temperature datasets.
+	* Added daily mean temperature calculation for the 2011–2025 analysis period, requiring at least two valid observations per day.
+	* Added tracking of temperature data quality flags for daily observations.
+	* Added seasonal mean temperature calculation by day of year, using a common 365-day calendar, excluding February 29 and shifting subsequent leap-year dates by one day.
+	* Added calculation of the standard deviation of daily mean temperatures for each day of the year.
+	* Added ROOT plotting of seasonal mean temperatures for Lund and Umeå with standard-deviation error bars.
+	* Updated the Makefile and main.cxx to include and run the temperature analysis and plotting.
+
+2026-10-26 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Data analysis for mean annual temperature
+	* Formed preliminary histogram for single plots and comparison plots. 
+
+2026-10-26 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Reorganized and simplified solar irradiance calculations and added three plotting functions.
+
+	* Modified include/sunshine.h and src/sunshine.cxx to simplify the daily and yearly average calculations by reusing the sunshineByYearAndDay function.
+	* Created include/sunshine_plot.h and src/sunshine_plot.cxx to separate data processing from ROOT visualization.
+	* Implemented three plotting functions:
+		* Daily solar irradiation comparison between Lund and Umeå, showing their average.
+		* Daily solar irradiation histogram showing the average with individual years displayed as transparent curves in the background.
+		* Annual mean solar irradiance comparison between Lund and Umeå, including linear regression fits.
+
+2026-10-25 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Data analysis for solar irradiance.
+
+	* Added include/sunshine.h and src/sunshine.cxx with functionallity to analyze the quality of the data.
+	* Added inside sunshine implementation a preliminar plotting function to compare and analyze the data.
+ 
+2026-10-24 Georges Nguyen <ge5787ng-s@student.lu.se>
+	Derived relevant data for mean annual temperature
+	* Parsed temperature datasets
+	* Added functions to calculate mean annual temperature into vector format
 
 2026-10-23 Georges Nguyen <ge5787ng-s@student.lu.se>
 	Filtered temperature datasets
@@ -55,10 +102,45 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Added bash script to derive data for temperature.
 	* Removed and filtered out extrapolated data.
 
-2026-10-24 Georges Nguyen <ge5787ng-s@student.lu.se>
-	Derived relevant data for mean annual temperature
-	* Parsed temperature datasets
-	* Added functions to calculate mean annual temperature into vector format
+2026-10-22 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+	Data import in to CPP code.
+
+	* Added parse_csv.h and parse_csv.cxx functionality to import cleaned CSV datasets with 3 or 4 columns.
+	* Added functions to convert dates into day-of-year (1–366) and hours into integers (0–23)
+	* Updated sunshine_derived.sh to make data separation with `,`.
+	* Reorganized data processing scripts into scripts/data/
+	* Updated READMEs for datasets folder and main project.
+
+2026-10-21 Manuel Lorente Rodriguez <ma8310lo-s@student.lu.se>
+
+	Data derived script for shunshie and dependencies
+
+	* Added bash script to obtain derived data for sunshie intensity and process raw data to derived.
+
+	* Added dependency to read CSV files in CPP.
+
+2026-10-21 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+
+	Extracted raw data and removed unnecessary files
+
+	* Added raw_data in datasets/ with extracted data from datasets.tgz
+	* Removed data files not from Umeå and Lund weather stations
+
+2026-10-21 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Added missing data files from SMHI:
+	* precipitation_lund_53430.csv
+	* precipitation_umea_robacksdalen_140490.csv
+	* sunshine_lund_53445.csv
+	* sunshine_umea_140615.csv
+
+2026-10-20 Elena Sanchez  <el8432sa-s@student.lu.se>
+
+	Updated project Workplan
+	1. Seasonal variation in mean temperature (Elena)
+	2. Long-term changes in mean annual temperature (Georges)
+	3. Comparison of Precipitation (Gabriel)
+	4. Comparison of Observed Solar Irradiance (Manuel)
 
 2026-10-26 Georges Nguyen <ge5787ng-s@student.lu.se>
 	Data analysis for mean annual temperature
