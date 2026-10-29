@@ -16,12 +16,16 @@ datasets/
 │   ├── precipitation_umea_robacksdalen_140490.csv
 │   ├── sunshine_lund_53445.csv
 │   ├── sunshine_umea_140615.csv
-│   └── ... temperature datasets
+│   ├── smhi-opendata_1_53430_20261007_164857_Lund.csv
+│   └── smhi-opendata_1_140480_20261007_164814_Umeå_Flygplats.csv
 │
 ├── derived_data/
 │   ├── sunshine/
 │   │   ├── lund_sunshine_derived.csv
 │   │   └── umea_sunshine_derived.csv
+│   ├── temperature/
+│   │   ├── lund_temp_derived.csv
+│   │   └── Umeå_temp_derived.csv
 │   └── precipitation/
 │       ├── precipitation_lund_derived.csv
 │       └── precipitation_umea_derived.csv
