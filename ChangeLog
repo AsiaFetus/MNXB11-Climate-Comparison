@@ -21,6 +21,14 @@ YYYY-MM-DD Name LastName  <email@somewhere>
 	* Improved comments in the temperature analysis code for clarity.
 	* Refined temperature plotting code and yearly temperature visualizations.
 	* Removed standardDeviations from TemperatureProfile because it is not used in the current plots.
+  
+2026-10-28 Gabriel Corrigan Förnvik <ga5705co-s@student.lu.se>
+
+	Added a function to analyse the extracted data and return the means and std deviations - then used in a plotting function which was also implemented.
+
+	* Modified precipitation.h to add new DailyStats type and declare the functions.
+	* Implemented the functions in precipitation.cxx using standard functionality for the statistical calculation and ROOT TH1D for generating the plots. 
+	* Modified main.cxx to test the new functionality.
 
 2026-10-27 Elena Sanchez  <el8432sa-s@student.lu.se>
 

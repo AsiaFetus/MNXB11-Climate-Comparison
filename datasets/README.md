@@ -89,6 +89,15 @@ Date,Precipitation,Quality
 
 ### Temperature
 
+Location: `derived_data/tmperature/`
+
+The cleaned temperature datasets contain four fields:
+
+```text
+Date,Time,Temperature,Quality
+```
+
+
 ## Data processing scripts
 
 The scripts are located in:

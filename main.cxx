@@ -102,28 +102,15 @@ int main() {
               << umeaSeasonal.days.size() << std::endl;
 
     // PRECIPITATION ANALYSIS
-    bool onlyGoodQuality{false};
+    bool onlyGoodQuality{true};
     auto lundPrecipitationData{extract_precipitation_data("datasets/derived_data/precipitation/precipitation_lund_derived.csv", onlyGoodQuality)};
     auto umeaPrecipitationData{extract_precipitation_data("datasets/derived_data/precipitation/precipitation_umea_derived.csv", onlyGoodQuality)};
 
-    // Print the first 10 Lund observations
-    std::cout << "\nLund precipitation data:\n";
+    auto lund_stats{calculate_day_stats(lundPrecipitationData)};
+    auto umea_stats{calculate_day_stats(umeaPrecipitationData)};
 
-    for (std::size_t i = 0; i < lundPrecipitationData.size() && i < 10; i++)
-    {
-    const auto& obs = lundPrecipitationData[i];
-
-    std::cout << "Year: " << obs.year
-              << ", Day: " << obs.day_number
-              << ", Precipitation: " << obs.precipitation_mm
-              << " mm\n";
-    }
-
-    // Good vs bad check in Lund
-    auto lundGood{extract_precipitation_data("datasets/derived_data/precipitation/precipitation_lund_derived.csv", true)};
-    std::cout << "Lund precipitation quality statistics:\n";
-    std::cout << "Good-quality observations (G): " << lundGood.size() << '\n';
-    std::cout << "Total observations: " << lundPrecipitationData.size() << '\n';
+    plot_precipitation_data(lund_stats, "Lund", "lund_precipitation.pdf");
+    plot_precipitation_data(umea_stats, "Umea", "umea_precipitation.pdf");
 
     return 0;
 }
