@@ -24,7 +24,7 @@ annualtemp lund("Lund","datasets/derived_data/temperature/lund_temp_derived.csv"
 
 lund.plotTemp("lund_annual_temp.pdf");
 
-annualtemp umea("Umeå", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
+annualtemp umea("Ume#aa", "datasets/derived_data/temperature/Umeå_temp_derived.csv");
 
 umea.plotTemp("umea_annual_temp.pdf");
 
