@@ -190,8 +190,8 @@ void annualtemp::plotTempComp(const annualtemp& other, const std::string& filena
     hist1->SetMinimum(min_val - 1.0);
     hist1->SetMaximum(max_val + 1.0);
 
-    hist1->Draw("HIST");
-    hist2->Draw("HIST SAME");
+    hist1->Draw("HIST C");
+    hist2->Draw("HIST SAME C");
 
     TLegend *legend = new TLegend(0.75, 0.78, 0.90, 0.90);
     legend->AddEntry(hist1, this->name.c_str(),"l");
