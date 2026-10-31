@@ -123,6 +123,25 @@ The cleaned precipitation datasets contain three fields:
 Date,Precipitation,Quality
 ```
 
+To obtain the derived data once can run the following in bash for Lund:
+
+
+```bash
+bash scripts/data/precipitation_derived.sh \
+  datasets/raw_data/precipitation_lund_53430.csv \
+  datasets/derived_data/sunshine/precipitation_lund_derived.csv \
+  12
+```
+
+and the following for Umeå:
+
+```bash
+bash scripts/data/precipitation_derived.sh \
+  datasets/raw_data/precipitation_umea_robacksdalen_140490.csv \
+  datasets/derived_data/sunshine/precipitation_umea_derived.csv \
+  12
+```
+
 ### Temperature
 
 Location: `derived_data/tmperature/`
