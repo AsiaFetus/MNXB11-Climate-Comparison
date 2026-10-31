@@ -58,6 +58,29 @@ Processing may include:
 - Converting column separators into a consistent format.
 - Removing unnecessary columns.
 
+
+### Generating derived datasets
+
+Run the following commands from the repository root.
+
+The scripts accept three arguments:
+
+```bash
+bash scripts/data/<script>.sh <raw_file> <output_file> <lines_to_skip>
+```
+
+For example, to generate the Lund solar irradiance dataset:
+
+```bash
+bash scripts/data/sunshine_derived.sh \
+  datasets/raw_data/sunshine_lund_53445.csv \
+  datasets/derived_data/sunshine/lund_sunshine_derived.csv \
+  N
+```
+
+Replace `N` with the first data line number in the raw file.
+
+
 ### Sunshine duration
 
 Location: `derived_data/sunshine/`
@@ -80,6 +103,15 @@ Date,Time,Irradiance,Quality
 - **Quality:** Indicates the quality of the measurement:
   - `G`: Good-quality measured data.
   - `Y`: Estimated or interpolated values where direct measurements were unavailable.
+
+To obtain this data the following can be executed:
+
+```bash
+bash scripts/data/sunshine_derived.sh \
+  datasets/raw_data/sunshine_lund_53445.csv \
+  datasets/derived_data/sunshine/lund_sunshine_derived.csv \
+  12
+```
 
 ### Precipitation
 
@@ -133,8 +165,17 @@ For hourly measurements, the time is also converted into an integer between 0–
 
 ## Data sources
 
-The datasets originate from [SMHI](https://www.smhi.se/).
+The solar irradiance and precipitation datasets were downloaded
+from the following SMHI measurement stations:
 
-Original temperature datasets were provided as part of the MNXB11 project material. Additional sunshine and precipitation measurements were obtained from SMHI open data.
+| Parameter | City | Station | Source |
+|---|---|---|---|
+| Solar irradiance | Lund | 53445 | [SMHI](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/irradiance/53445) |
+| Solar irradiance | Umeå | 140615 | [SMHI](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/irradiance/140615) |
+| Precipitation | Lund | 53430 | [SMHI](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/precipitation24HourSum/53430) |
+| Precipitation | Umeå | 140490 | [SMHI](https://www.smhi.se/data/hitta-data-for-en-plats/ladda-ner-vaderobservationer/precipitation24HourSum/140490) |
+
+Temperature datasets were provided as part of the MNXB11 course material.
+Original CSV files are stored in `datasets/raw_data/`.
 
 Data usage conditions: [SMHI Terms of Use](https://www.smhi.se/data/om-smhis-data/villkor-for-anvandning).
