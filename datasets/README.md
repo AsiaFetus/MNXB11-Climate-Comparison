@@ -144,14 +144,21 @@ bash scripts/data/precipitation_derived.sh \
 
 ### Temperature
 
-Location: `derived_data/tmperature/`
+Location: `derived_data/temperature/`
 
 The cleaned temperature datasets contain four fields:
 
 ```text
 Date,Time,Temperature,Quality
 ```
+To obtain the derived data set, we run the bash commands; 
 
+```bash
+./scripts/data/temperature_derived.sh datasets/raw_data/smhi-opendata_1_53430_20261007_164857_Lund.csv datasets/derived_data/temperature/lund_temp_derived.csv 74975
+```
+```bash
+./scripts/data/temperature_derived.sh datasets/raw_data/smhi-opendata_1_140480_20261007_164814_Umeå_Flygplats.csv datasets/derived_data/temperature/Umeå_temp_derived.csv 16018
+```
 
 ## Data processing scripts
 
