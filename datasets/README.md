@@ -130,7 +130,7 @@ To obtain the derived data once can run the following in bash for Lund:
 bash scripts/data/precipitation_derived.sh \
   datasets/raw_data/precipitation_lund_53430.csv \
   datasets/derived_data/sunshine/precipitation_lund_derived.csv \
-  12
+  13
 ```
 
 and the following for Umeå:
