@@ -68,17 +68,26 @@ The project uses C++17.
 - [fast-cpp-csv-parser](https://github.com/ben-strasser/fast-cpp-csv-parser)
 - ROOT (for statistical analysis and plotting)
 
-The CSV library header must be available at `external/include/csv/csv.h`. The Makefile must include `-I external/include` in its compiler flags.
+### Installing the CSV parser
 
-To compile the project from the repository root:
+The project uses [fast-cpp-csv-parser](https://github.com/ben-strasser/fast-cpp-csv-parser).
+Install the header-only library from the repository root:
 
 ```bash
-make
+mkdir -p external/include/csv
+curl -fL https://raw.githubusercontent.com/ben-strasser/fast-cpp-csv-parser/master/csv.h \
+    -o external/include/csv/csv.h
 ```
 
-Run the executable:
+The Makefile already includes `-I external/include` in the compiler flags.
+
+### Compiling and running
+
+Ensure ROOT, g++ and GNU Make are available.
 
 ```bash
+mkdir -p results/{sunshine,temperature,precipitation}
+make
 ./main
 ```
 
@@ -88,7 +97,55 @@ To remove compiled files:
 make clean
 ```
 
+### Building with bash scripts
+
+The project also includes scripts for building and running inside the MNXB11 course container on COSMOS.
+
+Build the project:
+
+```bash
+bash scripts/buildproject.sh
+```
+
+This creates the required results directories and compiles the project using the course container.
+
+Run the compiled program:
+
+```bash
+bash scripts/runproject.sh
+```
+
+The script executes `./main` inside the Apptainer container.
+
+### Running with SLURM
+
+Alternatively, the project can be executed as a batch job on COSMOS using the provided SLURM script.
+
+First, build the executable as described above. Then submit the job from the repository root:
+
+```bash
+sbatch --chdir="$PWD" slurm/project.sbatch
+```
+
+Check the job status:
+
+```bash
+squeue -u "$USER"
+```
+
+Cancel a job if necessary:
+
+```bash
+scancel <job_id>
+```
+
+The batch script uses `scripts/runproject.sh` and currently requests 5 minutes of execution time and 1 GB of memory.
+
+Job output is normally written to `slurm-<job_id>.out` in the submission directory.
+
 ## Data processing and analysis
+
+Instructions for downloading and regenerating the processed datasets are available in [datasets/README.md](datasets/README.md).
 
 The project follows these steps:
 
